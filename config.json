@@ -1,0 +1,33 @@
+{
+  "generateBinaryTree":{
+    "numberOfLeaves": 10,
+    "seed": 345
+  },
+
+  "createGermlineMutations":{
+    "numberOfGermlineMutations": 20,
+    "fractionOfHeterozygousGermlineMutations": 0.25,
+    "seed": 56
+  },
+
+  "createMutations":{
+    "numberOfMutations": 1,
+    "seed": 490
+  },
+
+  "simulateReads":{
+    "meanBinSize": 200,
+    "standardDeviationOfBinSize": 0.7,
+    "seed": 7643,
+    "meanCoverage": 250,
+    "standardDeviationCoverage": 0.7,
+    "readLength": 100,
+    "meanFragmentSize": 250,
+    "standardDeviationOfFragmentSize": 0.7,
+    "MDAamplificationErrorProbability": 0.0000001
+  }
+
+
+
+
+}

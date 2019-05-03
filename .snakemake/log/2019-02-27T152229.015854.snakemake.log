@@ -1,0 +1,103 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	1	convertFilesToSamtools
+	1	createHeterozygousMutations
+	1	insertHeterozygousMutations
+	1	sampleSimulationData
+	1	simulateMDAAmplificationErrors
+	1	simulateReads
+	1	splitGenomIntoSegments
+	8
+
+[Wed Feb 27 15:22:29 2019]
+rule createHeterozygousMutations:
+    output: Data/Mutations/HeterozygousMutations1.txt
+    jobid: 7
+    wildcards: treename=1
+
+[Wed Feb 27 15:22:29 2019]
+Finished job 7.
+1 of 8 steps (12%) done
+
+[Wed Feb 27 15:22:29 2019]
+rule insertHeterozygousMutations:
+    input: Data/Mutations/HeterozygousMutations1.txt, Data/ReferenceGenome.fa
+    output: Data/Mutations/InsertedHeterozygousMutations1.txt
+    jobid: 6
+    wildcards: treename=1
+
+[Wed Feb 27 15:22:29 2019]
+Finished job 6.
+2 of 8 steps (25%) done
+
+[Wed Feb 27 15:22:29 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedHeterozygousMutations1.txt
+    output: Data/MDASimulation/SplitGenomSequences1.txt
+    jobid: 5
+    wildcards: treename=1
+
+[Wed Feb 27 15:22:29 2019]
+Finished job 5.
+3 of 8 steps (38%) done
+
+[Wed Feb 27 15:22:29 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences1.txt
+    output: Data/MDASimulation/sampledSimulationData1.txt
+    jobid: 4
+    wildcards: treename=1
+
+[Wed Feb 27 15:22:29 2019]
+Finished job 4.
+4 of 8 steps (50%) done
+
+[Wed Feb 27 15:22:29 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData1.txt
+    output: Data/MDASimulation/simulatedRead1.txt
+    jobid: 3
+    wildcards: treename=1
+
+[Wed Feb 27 15:22:29 2019]
+Finished job 3.
+5 of 8 steps (62%) done
+
+[Wed Feb 27 15:22:29 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead1.txt
+    output: Data/MDASimulation/convertedToSamtools1.txt
+    jobid: 2
+    wildcards: treename=1
+
+[Wed Feb 27 15:22:29 2019]
+Finished job 2.
+6 of 8 steps (75%) done
+
+[Wed Feb 27 15:22:29 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools1.txt
+    output: results/amplificationErrors1.txt
+    jobid: 1
+    wildcards: treename=1
+
+[Wed Feb 27 15:22:29 2019]
+Finished job 1.
+7 of 8 steps (88%) done
+
+[Wed Feb 27 15:22:29 2019]
+rule SingleCellReadSimulator:
+    input: results/amplificationErrors1.txt
+    output: results/SingleCellReadSimulator_report1.txt
+    jobid: 0
+    wildcards: treename=1
+
+[Wed Feb 27 15:22:29 2019]
+Finished job 0.
+8 of 8 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-02-27T152229.015854.snakemake.log

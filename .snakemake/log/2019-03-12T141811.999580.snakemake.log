@@ -1,0 +1,17 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	generateBinaryTree
+	1
+
+[Tue Mar 12 14:18:12 2019]
+rule generateBinaryTree:
+    output: Data/Trees/binaryTree1000.py
+    jobid: 0
+    wildcards: treename=1000
+
+RuleException in line 7 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+NameError: The name 'generateBinaryTree.numberOfLeaves' is unknown in this context. Please make sure that you defined that variable. Also note that braces not used for variable access have to be escaped by repeating them, i.e. {{print $1}}

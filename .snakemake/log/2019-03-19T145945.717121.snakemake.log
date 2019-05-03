@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 17 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Missing input files for rule createGermlineMutations:
+Data/ReferenceData/MetaDataFrame.vcf.gz

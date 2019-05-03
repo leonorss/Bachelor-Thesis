@@ -1,0 +1,19 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	generateBinaryTree
+	1
+
+[Tue Mar 19 09:28:29 2019]
+rule generateBinaryTree:
+    output: Data/Trees/binaryTree1000.py
+    jobid: 0
+    wildcards: treename=1000
+
+[Tue Mar 19 09:28:29 2019]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-03-19T092829.121932.snakemake.log

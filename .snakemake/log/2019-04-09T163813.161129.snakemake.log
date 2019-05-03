@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 114 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Missing input files for rule splitGenomIntoSegments:
+Data/Mutations/InsertedMutations10_0.txt

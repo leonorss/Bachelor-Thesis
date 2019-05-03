@@ -1,0 +1,8 @@
+##fileformat=VCFv4.0
+##fileDate=20190319
+##reference=GRCh38
+##contig=<ID=1>
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+1	1	1	g	A	.	PASS	.	.
+1	5	1	t	G	.	PASS	.	.
+1	2	1	g	T	.	PASS	.	.

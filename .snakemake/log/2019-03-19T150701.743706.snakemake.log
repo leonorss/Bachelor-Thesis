@@ -1,0 +1,115 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	1	convertFilesToSamtools
+	1	createHeterozygousMutations
+	1	insertGermlineMutations
+	1	insertHeterozygousMutations
+	1	sampleSimulationData
+	1	simulateMDAAmplificationErrors
+	1	simulateReads
+	1	splitGenomIntoSegments
+	9
+
+[Tue Mar 19 15:07:01 2019]
+rule insertGermlineMutations:
+    input: Data/ReferenceData/ReferenceGenomeChromosome_18.fa, Data/Mutations/GermlineMutations1000.py
+    output: Data/Mutations/InsertedGermlineMutations1000.fa
+    jobid: 8
+    wildcards: treename=1000
+
+[Tue Mar 19 15:07:01 2019]
+Finished job 8.
+1 of 9 steps (11%) done
+
+[Tue Mar 19 15:07:01 2019]
+rule createHeterozygousMutations:
+    output: Data/Mutations/HeterozygousMutations1000.txt
+    jobid: 7
+    wildcards: treename=1000
+
+[Tue Mar 19 15:07:01 2019]
+Finished job 7.
+2 of 9 steps (22%) done
+
+[Tue Mar 19 15:07:01 2019]
+rule insertHeterozygousMutations:
+    input: Data/Mutations/HeterozygousMutations1000.txt, Data/Mutations/InsertedGermlineMutations1000.fa
+    output: Data/Mutations/InsertedHeterozygousMutations1000.txt
+    jobid: 6
+    wildcards: treename=1000
+
+[Tue Mar 19 15:07:01 2019]
+Finished job 6.
+3 of 9 steps (33%) done
+
+[Tue Mar 19 15:07:01 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedHeterozygousMutations1000.txt
+    output: Data/MDASimulation/SplitGenomSequences1000.txt
+    jobid: 5
+    wildcards: treename=1000
+
+[Tue Mar 19 15:07:01 2019]
+Finished job 5.
+4 of 9 steps (44%) done
+
+[Tue Mar 19 15:07:01 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences1000.txt
+    output: Data/MDASimulation/sampledSimulationData1000.txt
+    jobid: 4
+    wildcards: treename=1000
+
+[Tue Mar 19 15:07:01 2019]
+Finished job 4.
+5 of 9 steps (56%) done
+
+[Tue Mar 19 15:07:01 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData1000.txt
+    output: Data/MDASimulation/simulatedRead1000.txt
+    jobid: 3
+    wildcards: treename=1000
+
+[Tue Mar 19 15:07:01 2019]
+Finished job 3.
+6 of 9 steps (67%) done
+
+[Tue Mar 19 15:07:01 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead1000.txt
+    output: Data/MDASimulation/convertedToSamtools1000.txt
+    jobid: 2
+    wildcards: treename=1000
+
+[Tue Mar 19 15:07:01 2019]
+Finished job 2.
+7 of 9 steps (78%) done
+
+[Tue Mar 19 15:07:01 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools1000.txt
+    output: results/amplificationErrors1000.txt
+    jobid: 1
+    wildcards: treename=1000
+
+[Tue Mar 19 15:07:02 2019]
+Finished job 1.
+8 of 9 steps (89%) done
+
+[Tue Mar 19 15:07:02 2019]
+rule SingleCellReadSimulator:
+    input: results/amplificationErrors1000.txt
+    output: results/SingleCellReadSimulator_report1000.txt
+    jobid: 0
+    wildcards: treename=1000
+
+[Tue Mar 19 15:07:02 2019]
+Finished job 0.
+9 of 9 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-03-19T150701.743706.snakemake.log

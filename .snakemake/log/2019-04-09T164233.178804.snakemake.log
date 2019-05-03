@@ -1,0 +1,1125 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	20	convertFilesToSamtools
+	20	sampleSimulationData
+	20	simulateMDAAmplificationErrors
+	20	simulateReads
+	20	splitGenomIntoSegments
+	101
+
+[Tue Apr  9 16:42:33 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_13.fa
+    output: Data/MDASimulation/SplitGenomSequences10_13.txt
+    jobid: 94
+    wildcards: treename=10, sample=13
+
+[Tue Apr  9 16:42:33 2019]
+Finished job 94.
+1 of 101 steps (0.99%) done
+
+[Tue Apr  9 16:42:33 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_8.fa
+    output: Data/MDASimulation/SplitGenomSequences10_8.txt
+    jobid: 89
+    wildcards: treename=10, sample=8
+
+[Tue Apr  9 16:42:33 2019]
+Finished job 89.
+2 of 101 steps (2%) done
+
+[Tue Apr  9 16:42:33 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_9.fa
+    output: Data/MDASimulation/SplitGenomSequences10_9.txt
+    jobid: 90
+    wildcards: treename=10, sample=9
+
+[Tue Apr  9 16:42:33 2019]
+Finished job 90.
+3 of 101 steps (3%) done
+
+[Tue Apr  9 16:42:33 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_16.fa
+    output: Data/MDASimulation/SplitGenomSequences10_16.txt
+    jobid: 97
+    wildcards: treename=10, sample=16
+
+[Tue Apr  9 16:42:33 2019]
+Finished job 97.
+4 of 101 steps (4%) done
+
+[Tue Apr  9 16:42:33 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_3.fa
+    output: Data/MDASimulation/SplitGenomSequences10_3.txt
+    jobid: 84
+    wildcards: treename=10, sample=3
+
+[Tue Apr  9 16:42:33 2019]
+Finished job 84.
+5 of 101 steps (5%) done
+
+[Tue Apr  9 16:42:33 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_1.fa
+    output: Data/MDASimulation/SplitGenomSequences10_1.txt
+    jobid: 82
+    wildcards: treename=10, sample=1
+
+[Tue Apr  9 16:42:33 2019]
+Finished job 82.
+6 of 101 steps (6%) done
+
+[Tue Apr  9 16:42:33 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_11.fa
+    output: Data/MDASimulation/SplitGenomSequences10_11.txt
+    jobid: 92
+    wildcards: treename=10, sample=11
+
+[Tue Apr  9 16:42:33 2019]
+Finished job 92.
+7 of 101 steps (7%) done
+
+[Tue Apr  9 16:42:33 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_4.fa
+    output: Data/MDASimulation/SplitGenomSequences10_4.txt
+    jobid: 85
+    wildcards: treename=10, sample=4
+
+[Tue Apr  9 16:42:33 2019]
+Finished job 85.
+8 of 101 steps (8%) done
+
+[Tue Apr  9 16:42:33 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_5.fa
+    output: Data/MDASimulation/SplitGenomSequences10_5.txt
+    jobid: 86
+    wildcards: treename=10, sample=5
+
+[Tue Apr  9 16:42:33 2019]
+Finished job 86.
+9 of 101 steps (9%) done
+
+[Tue Apr  9 16:42:33 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_5.txt
+    output: Data/MDASimulation/sampledSimulationData10_5.txt
+    jobid: 66
+    wildcards: treename=10, sample=5
+
+[Tue Apr  9 16:42:33 2019]
+Finished job 66.
+10 of 101 steps (10%) done
+
+[Tue Apr  9 16:42:34 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_9.txt
+    output: Data/MDASimulation/sampledSimulationData10_9.txt
+    jobid: 70
+    wildcards: treename=10, sample=9
+
+[Tue Apr  9 16:42:34 2019]
+Finished job 70.
+11 of 101 steps (11%) done
+
+[Tue Apr  9 16:42:34 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_9.txt
+    output: Data/MDASimulation/simulatedRead10_9.txt
+    jobid: 50
+    wildcards: treename=10, sample=9
+
+[Tue Apr  9 16:42:34 2019]
+Finished job 50.
+12 of 101 steps (12%) done
+
+[Tue Apr  9 16:42:34 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_9.txt
+    output: Data/MDASimulation/convertedToSamtools10_9.txt
+    jobid: 30
+    wildcards: treename=10, sample=9
+
+[Tue Apr  9 16:42:34 2019]
+Finished job 30.
+13 of 101 steps (13%) done
+
+[Tue Apr  9 16:42:34 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_9.txt
+    output: results/amplificationErrors10_9.txt
+    jobid: 10
+    wildcards: treename=10, sample=9
+
+[Tue Apr  9 16:42:34 2019]
+Finished job 10.
+14 of 101 steps (14%) done
+
+[Tue Apr  9 16:42:34 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_12.fa
+    output: Data/MDASimulation/SplitGenomSequences10_12.txt
+    jobid: 93
+    wildcards: treename=10, sample=12
+
+[Tue Apr  9 16:42:34 2019]
+Finished job 93.
+15 of 101 steps (15%) done
+
+[Tue Apr  9 16:42:34 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_12.txt
+    output: Data/MDASimulation/sampledSimulationData10_12.txt
+    jobid: 73
+    wildcards: treename=10, sample=12
+
+[Tue Apr  9 16:42:34 2019]
+Finished job 73.
+16 of 101 steps (16%) done
+
+[Tue Apr  9 16:42:34 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_7.fa
+    output: Data/MDASimulation/SplitGenomSequences10_7.txt
+    jobid: 88
+    wildcards: treename=10, sample=7
+
+[Tue Apr  9 16:42:34 2019]
+Finished job 88.
+17 of 101 steps (17%) done
+
+[Tue Apr  9 16:42:34 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_7.txt
+    output: Data/MDASimulation/sampledSimulationData10_7.txt
+    jobid: 68
+    wildcards: treename=10, sample=7
+
+[Tue Apr  9 16:42:34 2019]
+Finished job 68.
+18 of 101 steps (18%) done
+
+[Tue Apr  9 16:42:34 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_4.txt
+    output: Data/MDASimulation/sampledSimulationData10_4.txt
+    jobid: 65
+    wildcards: treename=10, sample=4
+
+[Tue Apr  9 16:42:34 2019]
+Finished job 65.
+19 of 101 steps (19%) done
+
+[Tue Apr  9 16:42:34 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_4.txt
+    output: Data/MDASimulation/simulatedRead10_4.txt
+    jobid: 45
+    wildcards: treename=10, sample=4
+
+[Tue Apr  9 16:42:34 2019]
+Finished job 45.
+20 of 101 steps (20%) done
+
+[Tue Apr  9 16:42:35 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_4.txt
+    output: Data/MDASimulation/convertedToSamtools10_4.txt
+    jobid: 25
+    wildcards: treename=10, sample=4
+
+[Tue Apr  9 16:42:35 2019]
+Finished job 25.
+21 of 101 steps (21%) done
+
+[Tue Apr  9 16:42:35 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_4.txt
+    output: results/amplificationErrors10_4.txt
+    jobid: 5
+    wildcards: treename=10, sample=4
+
+[Tue Apr  9 16:42:35 2019]
+Finished job 5.
+22 of 101 steps (22%) done
+
+[Tue Apr  9 16:42:35 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_15.fa
+    output: Data/MDASimulation/SplitGenomSequences10_15.txt
+    jobid: 96
+    wildcards: treename=10, sample=15
+
+[Tue Apr  9 16:42:35 2019]
+Finished job 96.
+23 of 101 steps (23%) done
+
+[Tue Apr  9 16:42:35 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_15.txt
+    output: Data/MDASimulation/sampledSimulationData10_15.txt
+    jobid: 76
+    wildcards: treename=10, sample=15
+
+[Tue Apr  9 16:42:35 2019]
+Finished job 76.
+24 of 101 steps (24%) done
+
+[Tue Apr  9 16:42:35 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_11.txt
+    output: Data/MDASimulation/sampledSimulationData10_11.txt
+    jobid: 72
+    wildcards: treename=10, sample=11
+
+[Tue Apr  9 16:42:35 2019]
+Finished job 72.
+25 of 101 steps (25%) done
+
+[Tue Apr  9 16:42:35 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_11.txt
+    output: Data/MDASimulation/simulatedRead10_11.txt
+    jobid: 52
+    wildcards: treename=10, sample=11
+
+[Tue Apr  9 16:42:35 2019]
+Finished job 52.
+26 of 101 steps (26%) done
+
+[Tue Apr  9 16:42:35 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_11.txt
+    output: Data/MDASimulation/convertedToSamtools10_11.txt
+    jobid: 32
+    wildcards: treename=10, sample=11
+
+[Tue Apr  9 16:42:35 2019]
+Finished job 32.
+27 of 101 steps (27%) done
+
+[Tue Apr  9 16:42:35 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_11.txt
+    output: results/amplificationErrors10_11.txt
+    jobid: 12
+    wildcards: treename=10, sample=11
+
+[Tue Apr  9 16:42:35 2019]
+Finished job 12.
+28 of 101 steps (28%) done
+
+[Tue Apr  9 16:42:35 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_15.txt
+    output: Data/MDASimulation/simulatedRead10_15.txt
+    jobid: 56
+    wildcards: treename=10, sample=15
+
+[Tue Apr  9 16:42:35 2019]
+Finished job 56.
+29 of 101 steps (29%) done
+
+[Tue Apr  9 16:42:35 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_7.txt
+    output: Data/MDASimulation/simulatedRead10_7.txt
+    jobid: 48
+    wildcards: treename=10, sample=7
+
+[Tue Apr  9 16:42:35 2019]
+Finished job 48.
+30 of 101 steps (30%) done
+
+[Tue Apr  9 16:42:36 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_12.txt
+    output: Data/MDASimulation/simulatedRead10_12.txt
+    jobid: 53
+    wildcards: treename=10, sample=12
+
+[Tue Apr  9 16:42:36 2019]
+Finished job 53.
+31 of 101 steps (31%) done
+
+[Tue Apr  9 16:42:36 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_6.fa
+    output: Data/MDASimulation/SplitGenomSequences10_6.txt
+    jobid: 87
+    wildcards: treename=10, sample=6
+
+[Tue Apr  9 16:42:36 2019]
+Finished job 87.
+32 of 101 steps (32%) done
+
+[Tue Apr  9 16:42:36 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_6.txt
+    output: Data/MDASimulation/sampledSimulationData10_6.txt
+    jobid: 67
+    wildcards: treename=10, sample=6
+
+[Tue Apr  9 16:42:36 2019]
+Finished job 67.
+33 of 101 steps (33%) done
+
+[Tue Apr  9 16:42:36 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_6.txt
+    output: Data/MDASimulation/simulatedRead10_6.txt
+    jobid: 47
+    wildcards: treename=10, sample=6
+
+[Tue Apr  9 16:42:36 2019]
+Finished job 47.
+34 of 101 steps (34%) done
+
+[Tue Apr  9 16:42:36 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_6.txt
+    output: Data/MDASimulation/convertedToSamtools10_6.txt
+    jobid: 27
+    wildcards: treename=10, sample=6
+
+[Tue Apr  9 16:42:36 2019]
+Finished job 27.
+35 of 101 steps (35%) done
+
+[Tue Apr  9 16:42:36 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_10.fa
+    output: Data/MDASimulation/SplitGenomSequences10_10.txt
+    jobid: 91
+    wildcards: treename=10, sample=10
+
+[Tue Apr  9 16:42:36 2019]
+Finished job 91.
+36 of 101 steps (36%) done
+
+[Tue Apr  9 16:42:36 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_10.txt
+    output: Data/MDASimulation/sampledSimulationData10_10.txt
+    jobid: 71
+    wildcards: treename=10, sample=10
+
+[Tue Apr  9 16:42:36 2019]
+Finished job 71.
+37 of 101 steps (37%) done
+
+[Tue Apr  9 16:42:36 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_10.txt
+    output: Data/MDASimulation/simulatedRead10_10.txt
+    jobid: 51
+    wildcards: treename=10, sample=10
+
+[Tue Apr  9 16:42:36 2019]
+Finished job 51.
+38 of 101 steps (38%) done
+
+[Tue Apr  9 16:42:36 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_10.txt
+    output: Data/MDASimulation/convertedToSamtools10_10.txt
+    jobid: 31
+    wildcards: treename=10, sample=10
+
+[Tue Apr  9 16:42:36 2019]
+Finished job 31.
+39 of 101 steps (39%) done
+
+[Tue Apr  9 16:42:36 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_19.fa
+    output: Data/MDASimulation/SplitGenomSequences10_19.txt
+    jobid: 100
+    wildcards: treename=10, sample=19
+
+[Tue Apr  9 16:42:36 2019]
+Finished job 100.
+40 of 101 steps (40%) done
+
+[Tue Apr  9 16:42:37 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_19.txt
+    output: Data/MDASimulation/sampledSimulationData10_19.txt
+    jobid: 80
+    wildcards: treename=10, sample=19
+
+[Tue Apr  9 16:42:37 2019]
+Finished job 80.
+41 of 101 steps (41%) done
+
+[Tue Apr  9 16:42:37 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_19.txt
+    output: Data/MDASimulation/simulatedRead10_19.txt
+    jobid: 60
+    wildcards: treename=10, sample=19
+
+[Tue Apr  9 16:42:37 2019]
+Finished job 60.
+42 of 101 steps (42%) done
+
+[Tue Apr  9 16:42:37 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_19.txt
+    output: Data/MDASimulation/convertedToSamtools10_19.txt
+    jobid: 40
+    wildcards: treename=10, sample=19
+
+[Tue Apr  9 16:42:37 2019]
+Finished job 40.
+43 of 101 steps (43%) done
+
+[Tue Apr  9 16:42:37 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_3.txt
+    output: Data/MDASimulation/sampledSimulationData10_3.txt
+    jobid: 64
+    wildcards: treename=10, sample=3
+
+[Tue Apr  9 16:42:37 2019]
+Finished job 64.
+44 of 101 steps (44%) done
+
+[Tue Apr  9 16:42:37 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_3.txt
+    output: Data/MDASimulation/simulatedRead10_3.txt
+    jobid: 44
+    wildcards: treename=10, sample=3
+
+[Tue Apr  9 16:42:37 2019]
+Finished job 44.
+45 of 101 steps (45%) done
+
+[Tue Apr  9 16:42:37 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_3.txt
+    output: Data/MDASimulation/convertedToSamtools10_3.txt
+    jobid: 24
+    wildcards: treename=10, sample=3
+
+[Tue Apr  9 16:42:37 2019]
+Finished job 24.
+46 of 101 steps (46%) done
+
+[Tue Apr  9 16:42:37 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_3.txt
+    output: results/amplificationErrors10_3.txt
+    jobid: 4
+    wildcards: treename=10, sample=3
+
+[Tue Apr  9 16:42:37 2019]
+Finished job 4.
+47 of 101 steps (47%) done
+
+[Tue Apr  9 16:42:37 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_1.txt
+    output: Data/MDASimulation/sampledSimulationData10_1.txt
+    jobid: 62
+    wildcards: treename=10, sample=1
+
+[Tue Apr  9 16:42:37 2019]
+Finished job 62.
+48 of 101 steps (48%) done
+
+[Tue Apr  9 16:42:37 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_1.txt
+    output: Data/MDASimulation/simulatedRead10_1.txt
+    jobid: 42
+    wildcards: treename=10, sample=1
+
+[Tue Apr  9 16:42:37 2019]
+Finished job 42.
+49 of 101 steps (49%) done
+
+[Tue Apr  9 16:42:37 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_1.txt
+    output: Data/MDASimulation/convertedToSamtools10_1.txt
+    jobid: 22
+    wildcards: treename=10, sample=1
+
+[Tue Apr  9 16:42:37 2019]
+Finished job 22.
+50 of 101 steps (50%) done
+
+[Tue Apr  9 16:42:38 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_1.txt
+    output: results/amplificationErrors10_1.txt
+    jobid: 2
+    wildcards: treename=10, sample=1
+
+[Tue Apr  9 16:42:38 2019]
+Finished job 2.
+51 of 101 steps (50%) done
+
+[Tue Apr  9 16:42:38 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_15.txt
+    output: Data/MDASimulation/convertedToSamtools10_15.txt
+    jobid: 36
+    wildcards: treename=10, sample=15
+
+[Tue Apr  9 16:42:38 2019]
+Finished job 36.
+52 of 101 steps (51%) done
+
+[Tue Apr  9 16:42:38 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_15.txt
+    output: results/amplificationErrors10_15.txt
+    jobid: 16
+    wildcards: treename=10, sample=15
+
+[Tue Apr  9 16:42:38 2019]
+Finished job 16.
+53 of 101 steps (52%) done
+
+[Tue Apr  9 16:42:38 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_7.txt
+    output: Data/MDASimulation/convertedToSamtools10_7.txt
+    jobid: 28
+    wildcards: treename=10, sample=7
+
+[Tue Apr  9 16:42:38 2019]
+Finished job 28.
+54 of 101 steps (53%) done
+
+[Tue Apr  9 16:42:38 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_7.txt
+    output: results/amplificationErrors10_7.txt
+    jobid: 8
+    wildcards: treename=10, sample=7
+
+[Tue Apr  9 16:42:38 2019]
+Finished job 8.
+55 of 101 steps (54%) done
+
+[Tue Apr  9 16:42:38 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_12.txt
+    output: Data/MDASimulation/convertedToSamtools10_12.txt
+    jobid: 33
+    wildcards: treename=10, sample=12
+
+[Tue Apr  9 16:42:38 2019]
+Finished job 33.
+56 of 101 steps (55%) done
+
+[Tue Apr  9 16:42:38 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_12.txt
+    output: results/amplificationErrors10_12.txt
+    jobid: 13
+    wildcards: treename=10, sample=12
+
+[Tue Apr  9 16:42:38 2019]
+Finished job 13.
+57 of 101 steps (56%) done
+
+[Tue Apr  9 16:42:38 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_2.fa
+    output: Data/MDASimulation/SplitGenomSequences10_2.txt
+    jobid: 83
+    wildcards: treename=10, sample=2
+
+[Tue Apr  9 16:42:38 2019]
+Finished job 83.
+58 of 101 steps (57%) done
+
+[Tue Apr  9 16:42:38 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_2.txt
+    output: Data/MDASimulation/sampledSimulationData10_2.txt
+    jobid: 63
+    wildcards: treename=10, sample=2
+
+[Tue Apr  9 16:42:38 2019]
+Finished job 63.
+59 of 101 steps (58%) done
+
+[Tue Apr  9 16:42:38 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_2.txt
+    output: Data/MDASimulation/simulatedRead10_2.txt
+    jobid: 43
+    wildcards: treename=10, sample=2
+
+[Tue Apr  9 16:42:38 2019]
+Finished job 43.
+60 of 101 steps (59%) done
+
+[Tue Apr  9 16:42:39 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_2.txt
+    output: Data/MDASimulation/convertedToSamtools10_2.txt
+    jobid: 23
+    wildcards: treename=10, sample=2
+
+[Tue Apr  9 16:42:39 2019]
+Finished job 23.
+61 of 101 steps (60%) done
+
+[Tue Apr  9 16:42:39 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_2.txt
+    output: results/amplificationErrors10_2.txt
+    jobid: 3
+    wildcards: treename=10, sample=2
+
+[Tue Apr  9 16:42:39 2019]
+Finished job 3.
+62 of 101 steps (61%) done
+
+[Tue Apr  9 16:42:39 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_16.txt
+    output: Data/MDASimulation/sampledSimulationData10_16.txt
+    jobid: 77
+    wildcards: treename=10, sample=16
+
+[Tue Apr  9 16:42:39 2019]
+Finished job 77.
+63 of 101 steps (62%) done
+
+[Tue Apr  9 16:42:39 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_16.txt
+    output: Data/MDASimulation/simulatedRead10_16.txt
+    jobid: 57
+    wildcards: treename=10, sample=16
+
+[Tue Apr  9 16:42:39 2019]
+Finished job 57.
+64 of 101 steps (63%) done
+
+[Tue Apr  9 16:42:39 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_16.txt
+    output: Data/MDASimulation/convertedToSamtools10_16.txt
+    jobid: 37
+    wildcards: treename=10, sample=16
+
+[Tue Apr  9 16:42:39 2019]
+Finished job 37.
+65 of 101 steps (64%) done
+
+[Tue Apr  9 16:42:39 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_16.txt
+    output: results/amplificationErrors10_16.txt
+    jobid: 17
+    wildcards: treename=10, sample=16
+
+[Tue Apr  9 16:42:39 2019]
+Finished job 17.
+66 of 101 steps (65%) done
+
+[Tue Apr  9 16:42:39 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_5.txt
+    output: Data/MDASimulation/simulatedRead10_5.txt
+    jobid: 46
+    wildcards: treename=10, sample=5
+
+[Tue Apr  9 16:42:39 2019]
+Finished job 46.
+67 of 101 steps (66%) done
+
+[Tue Apr  9 16:42:39 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_5.txt
+    output: Data/MDASimulation/convertedToSamtools10_5.txt
+    jobid: 26
+    wildcards: treename=10, sample=5
+
+[Tue Apr  9 16:42:39 2019]
+Finished job 26.
+68 of 101 steps (67%) done
+
+[Tue Apr  9 16:42:39 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_5.txt
+    output: results/amplificationErrors10_5.txt
+    jobid: 6
+    wildcards: treename=10, sample=5
+
+[Tue Apr  9 16:42:39 2019]
+Finished job 6.
+69 of 101 steps (68%) done
+
+[Tue Apr  9 16:42:39 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_14.fa
+    output: Data/MDASimulation/SplitGenomSequences10_14.txt
+    jobid: 95
+    wildcards: treename=10, sample=14
+
+[Tue Apr  9 16:42:39 2019]
+Finished job 95.
+70 of 101 steps (69%) done
+
+[Tue Apr  9 16:42:40 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_14.txt
+    output: Data/MDASimulation/sampledSimulationData10_14.txt
+    jobid: 75
+    wildcards: treename=10, sample=14
+
+[Tue Apr  9 16:42:40 2019]
+Finished job 75.
+71 of 101 steps (70%) done
+
+[Tue Apr  9 16:42:40 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_14.txt
+    output: Data/MDASimulation/simulatedRead10_14.txt
+    jobid: 55
+    wildcards: treename=10, sample=14
+
+[Tue Apr  9 16:42:40 2019]
+Finished job 55.
+72 of 101 steps (71%) done
+
+[Tue Apr  9 16:42:40 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_14.txt
+    output: Data/MDASimulation/convertedToSamtools10_14.txt
+    jobid: 35
+    wildcards: treename=10, sample=14
+
+[Tue Apr  9 16:42:40 2019]
+Finished job 35.
+73 of 101 steps (72%) done
+
+[Tue Apr  9 16:42:40 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_14.txt
+    output: results/amplificationErrors10_14.txt
+    jobid: 15
+    wildcards: treename=10, sample=14
+
+[Tue Apr  9 16:42:40 2019]
+Finished job 15.
+74 of 101 steps (73%) done
+
+[Tue Apr  9 16:42:40 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_6.txt
+    output: results/amplificationErrors10_6.txt
+    jobid: 7
+    wildcards: treename=10, sample=6
+
+[Tue Apr  9 16:42:40 2019]
+Finished job 7.
+75 of 101 steps (74%) done
+
+[Tue Apr  9 16:42:40 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_0.fa
+    output: Data/MDASimulation/SplitGenomSequences10_0.txt
+    jobid: 81
+    wildcards: treename=10, sample=0
+
+[Tue Apr  9 16:42:40 2019]
+Finished job 81.
+76 of 101 steps (75%) done
+
+[Tue Apr  9 16:42:40 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_0.txt
+    output: Data/MDASimulation/sampledSimulationData10_0.txt
+    jobid: 61
+    wildcards: treename=10, sample=0
+
+[Tue Apr  9 16:42:40 2019]
+Finished job 61.
+77 of 101 steps (76%) done
+
+[Tue Apr  9 16:42:40 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_0.txt
+    output: Data/MDASimulation/simulatedRead10_0.txt
+    jobid: 41
+    wildcards: treename=10, sample=0
+
+[Tue Apr  9 16:42:40 2019]
+Finished job 41.
+78 of 101 steps (77%) done
+
+[Tue Apr  9 16:42:40 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_0.txt
+    output: Data/MDASimulation/convertedToSamtools10_0.txt
+    jobid: 21
+    wildcards: treename=10, sample=0
+
+[Tue Apr  9 16:42:40 2019]
+Finished job 21.
+79 of 101 steps (78%) done
+
+[Tue Apr  9 16:42:40 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_0.txt
+    output: results/amplificationErrors10_0.txt
+    jobid: 1
+    wildcards: treename=10, sample=0
+
+[Tue Apr  9 16:42:40 2019]
+Finished job 1.
+80 of 101 steps (79%) done
+
+[Tue Apr  9 16:42:41 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_10.txt
+    output: results/amplificationErrors10_10.txt
+    jobid: 11
+    wildcards: treename=10, sample=10
+
+[Tue Apr  9 16:42:41 2019]
+Finished job 11.
+81 of 101 steps (80%) done
+
+[Tue Apr  9 16:42:41 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_19.txt
+    output: results/amplificationErrors10_19.txt
+    jobid: 20
+    wildcards: treename=10, sample=19
+
+[Tue Apr  9 16:42:41 2019]
+Finished job 20.
+82 of 101 steps (81%) done
+
+[Tue Apr  9 16:42:41 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_18.fa
+    output: Data/MDASimulation/SplitGenomSequences10_18.txt
+    jobid: 99
+    wildcards: treename=10, sample=18
+
+[Tue Apr  9 16:42:41 2019]
+Finished job 99.
+83 of 101 steps (82%) done
+
+[Tue Apr  9 16:42:41 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_18.txt
+    output: Data/MDASimulation/sampledSimulationData10_18.txt
+    jobid: 79
+    wildcards: treename=10, sample=18
+
+[Tue Apr  9 16:42:41 2019]
+Finished job 79.
+84 of 101 steps (83%) done
+
+[Tue Apr  9 16:42:41 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_18.txt
+    output: Data/MDASimulation/simulatedRead10_18.txt
+    jobid: 59
+    wildcards: treename=10, sample=18
+
+[Tue Apr  9 16:42:41 2019]
+Finished job 59.
+85 of 101 steps (84%) done
+
+[Tue Apr  9 16:42:41 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_18.txt
+    output: Data/MDASimulation/convertedToSamtools10_18.txt
+    jobid: 39
+    wildcards: treename=10, sample=18
+
+[Tue Apr  9 16:42:41 2019]
+Finished job 39.
+86 of 101 steps (85%) done
+
+[Tue Apr  9 16:42:41 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_18.txt
+    output: results/amplificationErrors10_18.txt
+    jobid: 19
+    wildcards: treename=10, sample=18
+
+[Tue Apr  9 16:42:41 2019]
+Finished job 19.
+87 of 101 steps (86%) done
+
+[Tue Apr  9 16:42:41 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_8.txt
+    output: Data/MDASimulation/sampledSimulationData10_8.txt
+    jobid: 69
+    wildcards: treename=10, sample=8
+
+[Tue Apr  9 16:42:41 2019]
+Finished job 69.
+88 of 101 steps (87%) done
+
+[Tue Apr  9 16:42:41 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_8.txt
+    output: Data/MDASimulation/simulatedRead10_8.txt
+    jobid: 49
+    wildcards: treename=10, sample=8
+
+[Tue Apr  9 16:42:41 2019]
+Finished job 49.
+89 of 101 steps (88%) done
+
+[Tue Apr  9 16:42:41 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_8.txt
+    output: Data/MDASimulation/convertedToSamtools10_8.txt
+    jobid: 29
+    wildcards: treename=10, sample=8
+
+[Tue Apr  9 16:42:41 2019]
+Finished job 29.
+90 of 101 steps (89%) done
+
+[Tue Apr  9 16:42:42 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_8.txt
+    output: results/amplificationErrors10_8.txt
+    jobid: 9
+    wildcards: treename=10, sample=8
+
+[Tue Apr  9 16:42:42 2019]
+Finished job 9.
+91 of 101 steps (90%) done
+
+[Tue Apr  9 16:42:42 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedMutations10_17.fa
+    output: Data/MDASimulation/SplitGenomSequences10_17.txt
+    jobid: 98
+    wildcards: treename=10, sample=17
+
+[Tue Apr  9 16:42:42 2019]
+Finished job 98.
+92 of 101 steps (91%) done
+
+[Tue Apr  9 16:42:42 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_17.txt
+    output: Data/MDASimulation/sampledSimulationData10_17.txt
+    jobid: 78
+    wildcards: treename=10, sample=17
+
+[Tue Apr  9 16:42:42 2019]
+Finished job 78.
+93 of 101 steps (92%) done
+
+[Tue Apr  9 16:42:42 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_17.txt
+    output: Data/MDASimulation/simulatedRead10_17.txt
+    jobid: 58
+    wildcards: treename=10, sample=17
+
+[Tue Apr  9 16:42:42 2019]
+Finished job 58.
+94 of 101 steps (93%) done
+
+[Tue Apr  9 16:42:42 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_17.txt
+    output: Data/MDASimulation/convertedToSamtools10_17.txt
+    jobid: 38
+    wildcards: treename=10, sample=17
+
+[Tue Apr  9 16:42:42 2019]
+Finished job 38.
+95 of 101 steps (94%) done
+
+[Tue Apr  9 16:42:42 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_17.txt
+    output: results/amplificationErrors10_17.txt
+    jobid: 18
+    wildcards: treename=10, sample=17
+
+[Tue Apr  9 16:42:42 2019]
+Finished job 18.
+96 of 101 steps (95%) done
+
+[Tue Apr  9 16:42:42 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences10_13.txt
+    output: Data/MDASimulation/sampledSimulationData10_13.txt
+    jobid: 74
+    wildcards: treename=10, sample=13
+
+[Tue Apr  9 16:42:42 2019]
+Finished job 74.
+97 of 101 steps (96%) done
+
+[Tue Apr  9 16:42:42 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData10_13.txt
+    output: Data/MDASimulation/simulatedRead10_13.txt
+    jobid: 54
+    wildcards: treename=10, sample=13
+
+[Tue Apr  9 16:42:42 2019]
+Finished job 54.
+98 of 101 steps (97%) done
+
+[Tue Apr  9 16:42:42 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead10_13.txt
+    output: Data/MDASimulation/convertedToSamtools10_13.txt
+    jobid: 34
+    wildcards: treename=10, sample=13
+
+[Tue Apr  9 16:42:42 2019]
+Finished job 34.
+99 of 101 steps (98%) done
+
+[Tue Apr  9 16:42:42 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools10_13.txt
+    output: results/amplificationErrors10_13.txt
+    jobid: 14
+    wildcards: treename=10, sample=13
+
+[Tue Apr  9 16:42:42 2019]
+Finished job 14.
+100 of 101 steps (99%) done
+
+[Tue Apr  9 16:42:43 2019]
+rule SingleCellReadSimulator:
+    input: results/amplificationErrors10_0.txt, results/amplificationErrors10_1.txt, results/amplificationErrors10_2.txt, results/amplificationErrors10_3.txt, results/amplificationErrors10_4.txt, results/amplificationErrors10_5.txt, results/amplificationErrors10_6.txt, results/amplificationErrors10_7.txt, results/amplificationErrors10_8.txt, results/amplificationErrors10_9.txt, results/amplificationErrors10_10.txt, results/amplificationErrors10_11.txt, results/amplificationErrors10_12.txt, results/amplificationErrors10_13.txt, results/amplificationErrors10_14.txt, results/amplificationErrors10_15.txt, results/amplificationErrors10_16.txt, results/amplificationErrors10_17.txt, results/amplificationErrors10_18.txt, results/amplificationErrors10_19.txt
+    output: results/SingleCellReadSimulator_report10.txt
+    jobid: 0
+    wildcards: treename=10
+
+[Tue Apr  9 16:42:43 2019]
+Finished job 0.
+101 of 101 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-04-09T164233.178804.snakemake.log

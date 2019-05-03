@@ -1,0 +1,31 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	createMutations
+	1
+
+[Tue Apr  2 10:04:00 2019]
+rule createMutations:
+    input: Data/Trees/binaryTree10.txt, Data/Mutations/GermlineMutations10_Allel1.vcf, Data/Mutations/GermlineMutations10_Allel2.vcf, Data/ReferenceData/ReferenceGenomeChromosome_22.fa, Data/ReferenceData/MetaDataFrame.vcf
+    output: Data/Mutations/Mutations10_0.vcf, Data/Mutations/Mutations10_1.vcf, Data/Mutations/Mutations10_2.vcf, Data/Mutations/Mutations10_3.vcf, Data/Mutations/Mutations10_4.vcf, Data/Mutations/Mutations10_5.vcf, Data/Mutations/Mutations10_6.vcf, Data/Mutations/Mutations10_7.vcf, Data/Mutations/Mutations10_8.vcf, Data/Mutations/Mutations10_9.vcf, Data/Mutations/Mutations10_10.vcf, Data/Mutations/Mutations10_11.vcf, Data/Mutations/Mutations10_12.vcf, Data/Mutations/Mutations10_13.vcf, Data/Mutations/Mutations10_14.vcf, Data/Mutations/Mutations10_15.vcf, Data/Mutations/Mutations10_16.vcf, Data/Mutations/Mutations10_17.vcf, Data/Mutations/Mutations10_18.vcf, Data/Mutations/Mutations10_19.vcf
+    jobid: 0
+    wildcards: treename=10
+
+[Tue Apr  2 10:04:02 2019]
+Error in rule createMutations:
+    jobid: 0
+    output: Data/Mutations/Mutations10_0.vcf, Data/Mutations/Mutations10_1.vcf, Data/Mutations/Mutations10_2.vcf, Data/Mutations/Mutations10_3.vcf, Data/Mutations/Mutations10_4.vcf, Data/Mutations/Mutations10_5.vcf, Data/Mutations/Mutations10_6.vcf, Data/Mutations/Mutations10_7.vcf, Data/Mutations/Mutations10_8.vcf, Data/Mutations/Mutations10_9.vcf, Data/Mutations/Mutations10_10.vcf, Data/Mutations/Mutations10_11.vcf, Data/Mutations/Mutations10_12.vcf, Data/Mutations/Mutations10_13.vcf, Data/Mutations/Mutations10_14.vcf, Data/Mutations/Mutations10_15.vcf, Data/Mutations/Mutations10_16.vcf, Data/Mutations/Mutations10_17.vcf, Data/Mutations/Mutations10_18.vcf, Data/Mutations/Mutations10_19.vcf
+
+RuleException:
+CalledProcessError in line 66 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Command 'set -euo pipefail;  /usr/local/opt/python/bin/python3.7 '/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/scripts/tmp5xltcyo_.createMutationsFromTree.py'' returned non-zero exit status 1.
+  File "/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile", line 66, in __rule_createMutations
+  File "/usr/local/Cellar/python/3.7.2_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Removing output files of failed job createMutations since they might be corrupted:
+Data/Mutations/Mutations10_0.vcf, Data/Mutations/Mutations10_10.vcf
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-04-02T100400.177390.snakemake.log

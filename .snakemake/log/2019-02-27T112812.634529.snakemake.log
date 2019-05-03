@@ -1,0 +1,5 @@
+Building DAG of jobs...
+InputFunctionException in line 5 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+NameError: name 'treename' is not defined
+Wildcards:
+treename=1000

@@ -1,0 +1,3 @@
+WildcardError in line 57 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+No values given for wildcard 'wildcards'.
+  File "/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile", line 57, in <module>

@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	insertMutations
+	1
+
+[Tue Apr  2 11:18:54 2019]
+rule insertMutations:
+    input: Data/ReferenceData/ReferenceGenomeChromosome_22.fa, Data/Mutations/Mutations10_0.vcf, Data/Mutations/Mutations10_1.vcf, Data/Mutations/Mutations10_2.vcf, Data/Mutations/Mutations10_3.vcf, Data/Mutations/Mutations10_4.vcf, Data/Mutations/Mutations10_5.vcf, Data/Mutations/Mutations10_6.vcf, Data/Mutations/Mutations10_7.vcf, Data/Mutations/Mutations10_8.vcf, Data/Mutations/Mutations10_9.vcf, Data/Mutations/Mutations10_10.vcf, Data/Mutations/Mutations10_11.vcf, Data/Mutations/Mutations10_12.vcf, Data/Mutations/Mutations10_13.vcf, Data/Mutations/Mutations10_14.vcf, Data/Mutations/Mutations10_15.vcf, Data/Mutations/Mutations10_16.vcf, Data/Mutations/Mutations10_17.vcf, Data/Mutations/Mutations10_18.vcf, Data/Mutations/Mutations10_19.vcf
+    output: Data/Mutations/InsertedMutations10_0.fa, Data/Mutations/InsertedMutations10_1.fa, Data/Mutations/InsertedMutations10_2.fa, Data/Mutations/InsertedMutations10_3.fa, Data/Mutations/InsertedMutations10_4.fa, Data/Mutations/InsertedMutations10_5.fa, Data/Mutations/InsertedMutations10_6.fa, Data/Mutations/InsertedMutations10_7.fa, Data/Mutations/InsertedMutations10_8.fa, Data/Mutations/InsertedMutations10_9.fa, Data/Mutations/InsertedMutations10_10.fa, Data/Mutations/InsertedMutations10_11.fa, Data/Mutations/InsertedMutations10_12.fa, Data/Mutations/InsertedMutations10_13.fa, Data/Mutations/InsertedMutations10_14.fa, Data/Mutations/InsertedMutations10_15.fa, Data/Mutations/InsertedMutations10_16.fa, Data/Mutations/InsertedMutations10_17.fa, Data/Mutations/InsertedMutations10_18.fa, Data/Mutations/InsertedMutations10_19.fa
+    jobid: 0
+    wildcards: treename=10
+
+[Tue Apr  2 11:18:54 2019]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-04-02T111854.421122.snakemake.log

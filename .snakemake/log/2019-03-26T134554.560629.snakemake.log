@@ -1,0 +1,28 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	generateBinaryTree
+	1
+
+[Tue Mar 26 13:45:54 2019]
+rule generateBinaryTree:
+    output: Data/Trees/binaryTree10.py
+    jobid: 0
+    wildcards: treename=10
+
+[Tue Mar 26 13:45:55 2019]
+Error in rule generateBinaryTree:
+    jobid: 0
+    output: Data/Trees/binaryTree10.py
+
+RuleException:
+CalledProcessError in line 16 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Command 'set -euo pipefail;  python scripts/generateBinaryTree.py 10 Data/Trees/binaryTree10.py 345' returned non-zero exit status 1.
+  File "/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile", line 16, in __rule_generateBinaryTree
+  File "/usr/local/Cellar/python/3.7.2_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-03-26T134554.560629.snakemake.log

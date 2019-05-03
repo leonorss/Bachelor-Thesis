@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	createGermlineMutations
+	1
+
+[Thu Mar 14 10:36:18 2019]
+rule createGermlineMutations:
+    input: Data/ReferenceGenome.fa
+    output: Data/Mutations/GermlineMutations1000.py
+    jobid: 0
+    wildcards: treename=1000
+
+[Thu Mar 14 10:36:19 2019]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-03-14T103618.621335.snakemake.log

@@ -1,0 +1,128 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	1	convertFilesToSamtools
+	1	createGermlineMutations
+	1	createHeterozygousMutations
+	1	insertGermlineMutations
+	1	insertHeterozygousMutations
+	1	sampleSimulationData
+	1	simulateMDAAmplificationErrors
+	1	simulateReads
+	1	splitGenomIntoSegments
+	10
+
+[Wed Mar 20 11:40:08 2019]
+rule createGermlineMutations:
+    input: Data/ReferenceData/ReferenceGenomeChromosome_18.fa, Data/ReferenceData/MetaDataFrame.vcf
+    output: Data/Mutations/GermlineMutations1000Allel1.vcf, Data/Mutations/GermlineMutations1000Allel2.vcf
+    jobid: 10
+    wildcards: treename=1000
+
+[Wed Mar 20 11:40:11 2019]
+Finished job 10.
+1 of 10 steps (10%) done
+
+[Wed Mar 20 11:40:11 2019]
+rule insertGermlineMutations:
+    input: Data/ReferenceData/ReferenceGenomeChromosome_18.fa, Data/Mutations/GermlineMutations1000Allel1.vcf, Data/Mutations/GermlineMutations1000Allel2.vcf
+    output: Data/Mutations/InsertedGermlineMutations1000.fa
+    jobid: 8
+    wildcards: treename=1000
+
+[Wed Mar 20 11:40:11 2019]
+Finished job 8.
+2 of 10 steps (20%) done
+
+[Wed Mar 20 11:40:11 2019]
+rule createHeterozygousMutations:
+    input: Data/Trees/binaryTree1000.py
+    output: Data/Mutations/HeterozygousMutations1000.txt
+    jobid: 7
+    wildcards: treename=1000
+
+[Wed Mar 20 11:40:11 2019]
+Finished job 7.
+3 of 10 steps (30%) done
+
+[Wed Mar 20 11:40:11 2019]
+rule insertHeterozygousMutations:
+    input: Data/Mutations/HeterozygousMutations1000.txt, Data/Mutations/InsertedGermlineMutations1000.fa
+    output: Data/Mutations/InsertedHeterozygousMutations1000.txt
+    jobid: 6
+    wildcards: treename=1000
+
+[Wed Mar 20 11:40:11 2019]
+Finished job 6.
+4 of 10 steps (40%) done
+
+[Wed Mar 20 11:40:11 2019]
+rule splitGenomIntoSegments:
+    input: Data/Mutations/InsertedHeterozygousMutations1000.txt
+    output: Data/MDASimulation/SplitGenomSequences1000.txt
+    jobid: 5
+    wildcards: treename=1000
+
+[Wed Mar 20 11:40:11 2019]
+Finished job 5.
+5 of 10 steps (50%) done
+
+[Wed Mar 20 11:40:11 2019]
+rule sampleSimulationData:
+    input: Data/MDASimulation/SplitGenomSequences1000.txt
+    output: Data/MDASimulation/sampledSimulationData1000.txt
+    jobid: 4
+    wildcards: treename=1000
+
+[Wed Mar 20 11:40:11 2019]
+Finished job 4.
+6 of 10 steps (60%) done
+
+[Wed Mar 20 11:40:11 2019]
+rule simulateReads:
+    input: Data/MDASimulation/sampledSimulationData1000.txt
+    output: Data/MDASimulation/simulatedRead1000.txt
+    jobid: 3
+    wildcards: treename=1000
+
+[Wed Mar 20 11:40:11 2019]
+Finished job 3.
+7 of 10 steps (70%) done
+
+[Wed Mar 20 11:40:11 2019]
+rule convertFilesToSamtools:
+    input: Data/MDASimulation/simulatedRead1000.txt
+    output: Data/MDASimulation/convertedToSamtools1000.txt
+    jobid: 2
+    wildcards: treename=1000
+
+[Wed Mar 20 11:40:11 2019]
+Finished job 2.
+8 of 10 steps (80%) done
+
+[Wed Mar 20 11:40:11 2019]
+rule simulateMDAAmplificationErrors:
+    input: Data/MDASimulation/convertedToSamtools1000.txt
+    output: results/amplificationErrors1000.txt
+    jobid: 1
+    wildcards: treename=1000
+
+[Wed Mar 20 11:40:11 2019]
+Finished job 1.
+9 of 10 steps (90%) done
+
+[Wed Mar 20 11:40:11 2019]
+rule SingleCellReadSimulator:
+    input: results/amplificationErrors1000.txt
+    output: results/SingleCellReadSimulator_report1000.txt
+    jobid: 0
+    wildcards: treename=1000
+
+[Wed Mar 20 11:40:11 2019]
+Finished job 0.
+10 of 10 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-03-20T114008.777470.snakemake.log

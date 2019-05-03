@@ -1,0 +1,73 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	20	convertFilesToSamtools
+	1	createGermlineMutations
+	1	createMutations
+	1	generateBinaryTree
+	20	indexMutations
+	20	insertMutations
+	20	sampleSimulationData
+	20	simulateMDAAmplificationErrors
+	20	simulateReads
+	20	sortMutations
+	20	splitGenomIntoSegments
+	20	zipMutations
+	184
+
+[Tue Apr  9 16:56:37 2019]
+rule createGermlineMutations:
+    input: Data/ReferenceData/ReferenceGenomeChromosome_22.fa, Data/ReferenceData/MetaDataFrame.vcf
+    output: Data/Mutations/GermlineMutations10_Allel1.vcf, Data/Mutations/GermlineMutations10_Allel2.vcf
+    jobid: 183
+    wildcards: treename=10
+
+[Tue Apr  9 16:56:38 2019]
+Finished job 183.
+1 of 184 steps (0.54%) done
+
+[Tue Apr  9 16:56:38 2019]
+rule generateBinaryTree:
+    output: Data/Trees/binaryTree10.txt
+    jobid: 182
+    wildcards: treename=10
+
+[Tue Apr  9 16:56:39 2019]
+Finished job 182.
+2 of 184 steps (1%) done
+
+[Tue Apr  9 16:56:39 2019]
+rule createMutations:
+    input: Data/Trees/binaryTree10.txt, Data/Mutations/GermlineMutations10_Allel1.vcf, Data/Mutations/GermlineMutations10_Allel2.vcf, Data/ReferenceData/ReferenceGenomeChromosome_22.fa, Data/ReferenceData/MetaDataFrame.vcf
+    output: Data/Mutations/Mutations10_0.vcf, Data/Mutations/Mutations10_1.vcf, Data/Mutations/Mutations10_2.vcf, Data/Mutations/Mutations10_3.vcf, Data/Mutations/Mutations10_4.vcf, Data/Mutations/Mutations10_5.vcf, Data/Mutations/Mutations10_6.vcf, Data/Mutations/Mutations10_7.vcf, Data/Mutations/Mutations10_8.vcf, Data/Mutations/Mutations10_9.vcf, Data/Mutations/Mutations10_10.vcf, Data/Mutations/Mutations10_11.vcf, Data/Mutations/Mutations10_12.vcf, Data/Mutations/Mutations10_13.vcf, Data/Mutations/Mutations10_14.vcf, Data/Mutations/Mutations10_15.vcf, Data/Mutations/Mutations10_16.vcf, Data/Mutations/Mutations10_17.vcf, Data/Mutations/Mutations10_18.vcf, Data/Mutations/Mutations10_19.vcf
+    jobid: 181
+    wildcards: treename=10
+
+[Tue Apr  9 16:56:41 2019]
+Finished job 181.
+3 of 184 steps (2%) done
+
+[Tue Apr  9 16:56:41 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations10_2.vcf
+    output: Data/Mutations/sortedMutations10_2.vcf
+    jobid: 163
+    wildcards: treename=10, sample=2
+
+[Tue Apr  9 16:56:41 2019]
+Error in rule sortMutations:
+    jobid: 163
+    output: Data/Mutations/sortedMutations10_2.vcf
+
+RuleException:
+CalledProcessError in line 77 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Command 'set -euo pipefail;  export PATH=/Users/leonorschubert/Desktop/Aramis/ETH/Programms/bin:$PATHbcftools sort Data/Mutations/Mutations10_2.vcf > Data/Mutations/sortedMutations10_2.vcf' returned non-zero exit status 1.
+  File "/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile", line 77, in __rule_sortMutations
+  File "/usr/local/Cellar/python/3.7.2_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-04-09T165636.799391.snakemake.log

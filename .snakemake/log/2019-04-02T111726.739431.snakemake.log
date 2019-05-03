@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 68 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Missing input files for rule insertMutations:
+Data/Mutations/InsertedGermlineMutations10.fa

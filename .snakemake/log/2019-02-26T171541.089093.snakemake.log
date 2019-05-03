@@ -1,0 +1,91 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	convertFilesToSamtools
+	1	createHeterozygousMutations
+	1	insertHeterozygousMutations
+	1	sampleSimulationData
+	1	simulateMDAAmplificationErrors
+	1	simulateReads
+	1	splitGenomIntoSegments
+	7
+
+[Tue Feb 26 17:15:41 2019]
+rule createHeterozygousMutations:
+    output: Mutations/HeterozygousMutations100.txt
+    jobid: 6
+    wildcards: treename=100
+
+[Tue Feb 26 17:15:41 2019]
+Finished job 6.
+1 of 7 steps (14%) done
+
+[Tue Feb 26 17:15:41 2019]
+rule insertHeterozygousMutations:
+    input: Mutations/HeterozygousMutations100.txt
+    output: Mutations/InsertedHeterozygousMutations100.txt
+    jobid: 5
+    wildcards: treename=100
+
+[Tue Feb 26 17:15:41 2019]
+Finished job 5.
+2 of 7 steps (29%) done
+
+[Tue Feb 26 17:15:41 2019]
+rule splitGenomIntoSegments:
+    input: Mutations/InsertedHeterozygousMutations100.txt
+    output: MDASimulation/SplitGenomSequences100.txt
+    jobid: 4
+    wildcards: treename=100
+
+[Tue Feb 26 17:15:41 2019]
+Finished job 4.
+3 of 7 steps (43%) done
+
+[Tue Feb 26 17:15:41 2019]
+rule sampleSimulationData:
+    input: MDASimulation/SplitGenomSequences100.txt
+    output: MDASimulation/sampledSimulationData100.txt
+    jobid: 3
+    wildcards: treename=100
+
+[Tue Feb 26 17:15:41 2019]
+Finished job 3.
+4 of 7 steps (57%) done
+
+[Tue Feb 26 17:15:41 2019]
+rule simulateReads:
+    input: MDASimulation/sampledSimulationData100.txt
+    output: MDASimulation/simulatedRead100.txt
+    jobid: 2
+    wildcards: treename=100
+
+[Tue Feb 26 17:15:41 2019]
+Finished job 2.
+5 of 7 steps (71%) done
+
+[Tue Feb 26 17:15:41 2019]
+rule convertFilesToSamtools:
+    input: MDASimulation/simulatedRead100.txt
+    output: MDASimulation/convertedToSamtools100.txt
+    jobid: 1
+    wildcards: treename=100
+
+[Tue Feb 26 17:15:41 2019]
+Finished job 1.
+6 of 7 steps (86%) done
+
+[Tue Feb 26 17:15:41 2019]
+rule simulateMDAAmplificationErrors:
+    input: MDASimulation/convertedToSamtools100.txt
+    output: results/amplificationErrors100.txt
+    jobid: 0
+    wildcards: treename=100
+
+[Tue Feb 26 17:15:41 2019]
+Finished job 0.
+7 of 7 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-02-26T171541.089093.snakemake.log
