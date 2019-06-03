@@ -1,0 +1,9 @@
+name: environment2
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.4
+  - bcftools
+  - biopython

@@ -11,7 +11,7 @@ random.seed(configSeed)
 numberOfMutations = snakemake.params[0]
 
 # read in reference Genome to check that we don't insert Mutations, that actually don't change the Genome
-referenceGenome = SeqIO.read(snakemake.input[3], "fasta")
+referenceGenome = SeqIO.read(snakemake.params[3], "fasta")
 referenceGenomeLength = len(referenceGenome)
 
 # read in tree and number of leaves
@@ -19,9 +19,10 @@ tree = np.loadtxt(fname = snakemake.input[0])
 leaves = snakemake.params[1]
 
 # read in metadata for the vcf files
-vcfReader_MetaData = vcf.Reader(filename=snakemake.input[4])
+vcfReader_MetaData = vcf.Reader(filename=snakemake.params[4])
 vcfReader_Allel1 = vcf.Reader(filename=snakemake.input[1])
 vcfReader_Allel2 = vcf.Reader(filename=snakemake.input[2])
+chromosomId = int(vcfReader_MetaData.contigs["1"][0])
 
 # save created mutations and positions to insert into vcf files later
 randomPostions = np.zeros(numberOfMutations)
@@ -210,7 +211,7 @@ for leave in range(0, leaves):
         if (mutationsOfAllLeaves[mutation][leave] == 1):
             position = int(randomPostions[mutation])
             mutation = mutatedNucleotids[mutation]
-            record = vcf.model._Record(CHROM=22, POS=(position+1), ID='.',
+            record = vcf.model._Record(CHROM=chromosomId, POS=(position+1), ID='.',
                         REF=vcf.model._Substitution(referenceGenome[position]),
                         ALT=[vcf.model._Substitution(mutation)], QUAL='.', FILTER='PASS', INFO={},
                         FORMAT=".", sample_indexes=[], samples=None)

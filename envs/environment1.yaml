@@ -1,0 +1,8 @@
+name: environment1
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.4
+  - numpy

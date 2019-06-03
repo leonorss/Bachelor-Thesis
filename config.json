@@ -1,29 +1,35 @@
 {
+  "setReferenceGenomeAndMetaDataFrame":{
+    "referenceGenome": "Test/ReferenceGenome.fa",
+    "metaDataFrame": "Test/MetaDataFrame.vcf"
+
+  },
+
   "generateBinaryTree":{
-    "numberOfLeaves": 10,
+    "numberOfLeaves": 3,
     "seed": 345
   },
 
   "createGermlineMutations":{
-    "numberOfGermlineMutations": 20,
+    "numberOfGermlineMutations": 10,
     "fractionOfHeterozygousGermlineMutations": 0.25,
     "seed": 56
   },
 
   "createMutations":{
-    "numberOfMutations": 1,
+    "numberOfMutations": 2,
     "seed": 490
   },
 
   "simulateReads":{
-    "meanBinSize": 200,
-    "standardDeviationOfBinSize": 0.7,
+    "meanBinSize": 500,
+    "varianceOfBinSize": 100,
     "seed": 7643,
-    "meanCoverage": 250,
-    "standardDeviationCoverage": 0.7,
+    "meanCoverage": 3,
+    "varianceOfCoverage": 3,
     "readLength": 100,
     "meanFragmentSize": 250,
-    "standardDeviationOfFragmentSize": 0.7,
+    "varianceOfFragmentSize": 15,
     "MDAamplificationErrorProbability": 0.0000001
   }
 

@@ -1,0 +1,10 @@
+name: environment5
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.4
+  - numpy
+  - biopython
+  - art

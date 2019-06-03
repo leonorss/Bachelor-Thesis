@@ -1,0 +1,19 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	20	simulateReads
+	21
+
+[Tue May 14 15:04:15 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations10_13.fa
+    output: results/amplificationErrors10_13.txt
+    jobid: 14
+    wildcards: treename=10, sample=13
+
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

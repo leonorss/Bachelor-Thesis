@@ -1,0 +1,9 @@
+name: environment4
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - samtools
+  - bcftools
+  - htslib

@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	1
+
+[Tue May 14 14:14:06 2019]
+rule SingleCellReadSimulator:
+    input: results/amplificationErrors10_0.txt, results/amplificationErrors10_1.txt, results/amplificationErrors10_2.txt, results/amplificationErrors10_3.txt, results/amplificationErrors10_4.txt, results/amplificationErrors10_5.txt, results/amplificationErrors10_6.txt, results/amplificationErrors10_7.txt, results/amplificationErrors10_8.txt, results/amplificationErrors10_9.txt, results/amplificationErrors10_10.txt, results/amplificationErrors10_11.txt, results/amplificationErrors10_12.txt, results/amplificationErrors10_13.txt, results/amplificationErrors10_14.txt, results/amplificationErrors10_15.txt, results/amplificationErrors10_16.txt, results/amplificationErrors10_17.txt, results/amplificationErrors10_18.txt, results/amplificationErrors10_19.txt
+    output: results/SingleCellReadSimulator_report10.txt
+    jobid: 0
+    wildcards: treename=10
+
+[Tue May 14 14:14:06 2019]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-05-14T141405.941826.snakemake.log

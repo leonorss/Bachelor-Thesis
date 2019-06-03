@@ -1,8 +1,0 @@
-@HD	VN:1.4	SO:unsorted
-@SQ	SN:1 <unknown description>	LN:2
-@PG	ID:01	PN:ART_Illumina	CL:art_illumina -sam -na -i Record_1.fa -l 2 -ss HS25 -f 5 -o ARTRecord_1 -rs 1556609869
-1-5	16	1	1	99	2=	*	0	0	GT	BC
-1-4	16	1	1	99	2=	*	0	0	GT	CC
-1-3	16	1	1	99	2=	*	0	0	GT	C3
-1-2	0	1	1	99	2=	*	0	0	GT	BB
-1-1	16	1	1	99	2=	*	0	0	GT	CB

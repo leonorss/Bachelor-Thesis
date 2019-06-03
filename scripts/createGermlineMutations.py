@@ -15,13 +15,14 @@ numberOfHeterozygousGermlineMutations = int(n_g_m * f_h_m)
 numberOfHomozygousGermlineMutations = n_g_m - numberOfHeterozygousGermlineMutations
 
 # read in reference Genome to check that we don't insert Mutations, that actually don't change the Genome
-referenceGenome = SeqIO.read(snakemake.input[0], "fasta")
+referenceGenome = SeqIO.read(snakemake.params[3], "fasta")
 referenceGenomeLength = len(referenceGenome)
 
 # create two vcf Files for the 2 allels with the given header
-vcfReader_MetaData = vcf.Reader(filename=snakemake.input[1])
+vcfReader_MetaData = vcf.Reader(filename=snakemake.params[4])
 vcfWriter1 = vcf.Writer(open(snakemake.output[0], 'w'), vcfReader_MetaData)
 vcfWriter2 = vcf.Writer(open(snakemake.output[1], 'w'), vcfReader_MetaData)
+chromosomId = int(vcfReader_MetaData.contigs["1"][0])
 
 # creating specified number of random homozygous mutations: 1=A, 2=C, 3=G, 4=T
 for homozygousMutation in range(0, numberOfHomozygousGermlineMutations):
@@ -49,7 +50,7 @@ for homozygousMutation in range(0, numberOfHomozygousGermlineMutations):
                 # inserting the mutations into the two vcf files
                 if alreadyMutated == 0:
                     inserted = 1
-                    record = vcf.model._Record(CHROM=22, POS=(insertPlace+1), ID='.',
+                    record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
                                 REF=vcf.model._Substitution(referenceGenome[insertPlace]),
                                 ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
                                 FORMAT=".", sample_indexes=[], samples=None)
@@ -74,7 +75,7 @@ for homozygousMutation in range(0, numberOfHomozygousGermlineMutations):
                 # inserting the mutations into the two vcf files
                 if alreadyMutated == 0:
                     inserted = 1
-                    record = vcf.model._Record(CHROM=22, POS=(insertPlace+1), ID='.',
+                    record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
                                 REF=vcf.model._Substitution(referenceGenome[insertPlace]),
                                 ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
                                 FORMAT=".", sample_indexes=[], samples=None)
@@ -100,7 +101,7 @@ for homozygousMutation in range(0, numberOfHomozygousGermlineMutations):
                 # inserting the mutations into the two vcf files
                 if alreadyMutated == 0:
                     inserted = 1
-                    record = vcf.model._Record(CHROM=22, POS=(insertPlace+1), ID='.',
+                    record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
                                 REF=vcf.model._Substitution(referenceGenome[insertPlace]),
                                 ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
                                 FORMAT=".", sample_indexes=[], samples=None)
@@ -125,7 +126,7 @@ for homozygousMutation in range(0, numberOfHomozygousGermlineMutations):
                 # inserting the mutations into the two vcf files
                 if alreadyMutated == 0:
                     inserted = 1
-                    record = vcf.model._Record(CHROM=22, POS=(insertPlace+1), ID='.',
+                    record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
                                 REF=vcf.model._Substitution(referenceGenome[insertPlace]),
                                 ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
                                 FORMAT=".", sample_indexes=[], samples=None)
@@ -156,7 +157,7 @@ for heterozygousMutation in range(0, numberOfHeterozygousGermlineMutations):
 
             # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
             if (mutatedNucleotid != referenceGenome[insertPlace]) and ("a" != referenceGenome[insertPlace]):
-                record = vcf.model._Record(CHROM=22, POS=(insertPlace+1), ID='.',
+                record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
                             REF=vcf.model._Substitution(referenceGenome[insertPlace]),
                             ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
                             FORMAT=".", sample_indexes=[], samples=None)
@@ -189,7 +190,7 @@ for heterozygousMutation in range(0, numberOfHeterozygousGermlineMutations):
 
             # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
             if (mutatedNucleotid != referenceGenome[insertPlace]) and ("c" != referenceGenome[insertPlace]):
-                record = vcf.model._Record(CHROM=22, POS=(insertPlace+1), ID='.',
+                record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
                             REF=vcf.model._Substitution(referenceGenome[insertPlace]),
                             ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
                             FORMAT=".", sample_indexes=[], samples=None)
@@ -222,7 +223,7 @@ for heterozygousMutation in range(0, numberOfHeterozygousGermlineMutations):
 
             # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
             if (mutatedNucleotid != referenceGenome[insertPlace]) and ("g" != referenceGenome[insertPlace]):
-                record = vcf.model._Record(CHROM=22, POS=(insertPlace+1), ID='.',
+                record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
                             REF=vcf.model._Substitution(referenceGenome[insertPlace]),
                             ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
                             FORMAT=".", sample_indexes=[], samples=None)
@@ -255,7 +256,7 @@ for heterozygousMutation in range(0, numberOfHeterozygousGermlineMutations):
 
             # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
             if (mutatedNucleotid != referenceGenome[insertPlace]) and ("t" != referenceGenome[insertPlace]):
-                record = vcf.model._Record(CHROM=22, POS=(insertPlace+1), ID='.',
+                record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
                             REF=vcf.model._Substitution(referenceGenome[insertPlace]),
                             ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
                             FORMAT=".", sample_indexes=[], samples=None)

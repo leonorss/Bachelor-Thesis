@@ -1,0 +1,413 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	1	createGermlineMutations
+	1	createMutations
+	1	generateBinaryTree
+	6	indexMutations
+	6	insertMutations
+	6	simulateReads
+	6	sortMutations
+	6	zipMutations
+	34
+
+[Fri May 17 14:14:22 2019]
+rule createGermlineMutations:
+    output: Data/Mutations/GermlineMutations_report3_Allel1.vcf, Data/Mutations/GermlineMutations_report3_Allel2.vcf
+    jobid: 33
+    wildcards: treename=_report3
+
+[Fri May 17 14:14:23 2019]
+Finished job 33.
+1 of 34 steps (3%) done
+
+[Fri May 17 14:14:23 2019]
+rule generateBinaryTree:
+    output: Data/Trees/binaryTree_report3.txt
+    jobid: 32
+    wildcards: treename=_report3
+
+[Fri May 17 14:14:24 2019]
+Finished job 32.
+2 of 34 steps (6%) done
+
+[Fri May 17 14:14:24 2019]
+rule createMutations:
+    input: Data/Trees/binaryTree_report3.txt, Data/Mutations/GermlineMutations_report3_Allel1.vcf, Data/Mutations/GermlineMutations_report3_Allel2.vcf
+    output: Data/Mutations/Mutations_report3_0.vcf, Data/Mutations/Mutations_report3_1.vcf, Data/Mutations/Mutations_report3_2.vcf, Data/Mutations/Mutations_report3_3.vcf, Data/Mutations/Mutations_report3_4.vcf, Data/Mutations/Mutations_report3_5.vcf
+    jobid: 31
+    wildcards: treename=_report3
+
+[Fri May 17 14:14:25 2019]
+Finished job 31.
+3 of 34 steps (9%) done
+
+[Fri May 17 14:14:25 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations_report3_4.vcf
+    output: Data/Mutations/sortedMutations_report3_4.vcf
+    jobid: 29
+    wildcards: treename=_report3, sample=4
+
+[Fri May 17 14:14:25 2019]
+Finished job 29.
+4 of 34 steps (12%) done
+
+[Fri May 17 14:14:25 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations_report3_4.vcf
+    output: Data/Mutations/sortedMutations_report3_4.vcf.gz
+    jobid: 21
+    wildcards: treename=_report3, sample=4
+
+Removing temporary output file Data/Mutations/sortedMutations_report3_4.vcf.
+[Fri May 17 14:14:25 2019]
+Finished job 21.
+5 of 34 steps (15%) done
+
+[Fri May 17 14:14:25 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations_report3_4.vcf.gz
+    output: Data/Mutations/sortedMutations_report3_4.vcf.gz.tbi
+    jobid: 22
+    wildcards: treename=_report3, sample=4
+
+[Fri May 17 14:14:25 2019]
+Finished job 22.
+6 of 34 steps (18%) done
+
+[Fri May 17 14:14:25 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations_report3_4.vcf.gz, Data/Mutations/sortedMutations_report3_4.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations_report3_4.fa
+    jobid: 11
+    wildcards: treename=_report3, sample=4
+
+Removing temporary output file Data/Mutations/sortedMutations_report3_4.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations_report3_4.vcf.gz.tbi.
+[Fri May 17 14:14:25 2019]
+Finished job 11.
+7 of 34 steps (21%) done
+
+[Fri May 17 14:14:25 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations_report3_4.fa
+    output: results/amplificationErrors_report3_4_calculated.txt
+    jobid: 5
+    wildcards: treename=_report3, sample=4
+
+[Fri May 17 14:14:27 2019]
+Finished job 5.
+8 of 34 steps (24%) done
+
+[Fri May 17 14:14:27 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations_report3_5.vcf
+    output: Data/Mutations/sortedMutations_report3_5.vcf
+    jobid: 30
+    wildcards: treename=_report3, sample=5
+
+[Fri May 17 14:14:27 2019]
+Finished job 30.
+9 of 34 steps (26%) done
+
+[Fri May 17 14:14:27 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations_report3_5.vcf
+    output: Data/Mutations/sortedMutations_report3_5.vcf.gz
+    jobid: 23
+    wildcards: treename=_report3, sample=5
+
+Removing temporary output file Data/Mutations/sortedMutations_report3_5.vcf.
+[Fri May 17 14:14:27 2019]
+Finished job 23.
+10 of 34 steps (29%) done
+
+[Fri May 17 14:14:27 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations_report3_5.vcf.gz
+    output: Data/Mutations/sortedMutations_report3_5.vcf.gz.tbi
+    jobid: 24
+    wildcards: treename=_report3, sample=5
+
+[Fri May 17 14:14:27 2019]
+Finished job 24.
+11 of 34 steps (32%) done
+
+[Fri May 17 14:14:27 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations_report3_5.vcf.gz, Data/Mutations/sortedMutations_report3_5.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations_report3_5.fa
+    jobid: 12
+    wildcards: treename=_report3, sample=5
+
+Removing temporary output file Data/Mutations/sortedMutations_report3_5.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations_report3_5.vcf.gz.tbi.
+[Fri May 17 14:14:27 2019]
+Finished job 12.
+12 of 34 steps (35%) done
+
+[Fri May 17 14:14:27 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations_report3_5.fa
+    output: results/amplificationErrors_report3_5_calculated.txt
+    jobid: 6
+    wildcards: treename=_report3, sample=5
+
+[Fri May 17 14:14:28 2019]
+Finished job 6.
+13 of 34 steps (38%) done
+
+[Fri May 17 14:14:28 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations_report3_2.vcf
+    output: Data/Mutations/sortedMutations_report3_2.vcf
+    jobid: 27
+    wildcards: treename=_report3, sample=2
+
+[Fri May 17 14:14:28 2019]
+Finished job 27.
+14 of 34 steps (41%) done
+
+[Fri May 17 14:14:28 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations_report3_2.vcf
+    output: Data/Mutations/sortedMutations_report3_2.vcf.gz
+    jobid: 17
+    wildcards: treename=_report3, sample=2
+
+Removing temporary output file Data/Mutations/sortedMutations_report3_2.vcf.
+[Fri May 17 14:14:28 2019]
+Finished job 17.
+15 of 34 steps (44%) done
+
+[Fri May 17 14:14:28 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations_report3_2.vcf.gz
+    output: Data/Mutations/sortedMutations_report3_2.vcf.gz.tbi
+    jobid: 18
+    wildcards: treename=_report3, sample=2
+
+[Fri May 17 14:14:28 2019]
+Finished job 18.
+16 of 34 steps (47%) done
+
+[Fri May 17 14:14:28 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations_report3_2.vcf.gz, Data/Mutations/sortedMutations_report3_2.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations_report3_2.fa
+    jobid: 9
+    wildcards: treename=_report3, sample=2
+
+Removing temporary output file Data/Mutations/sortedMutations_report3_2.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations_report3_2.vcf.gz.tbi.
+[Fri May 17 14:14:28 2019]
+Finished job 9.
+17 of 34 steps (50%) done
+
+[Fri May 17 14:14:28 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations_report3_2.fa
+    output: results/amplificationErrors_report3_2_calculated.txt
+    jobid: 3
+    wildcards: treename=_report3, sample=2
+
+[Fri May 17 14:14:29 2019]
+Finished job 3.
+18 of 34 steps (53%) done
+
+[Fri May 17 14:14:29 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations_report3_1.vcf
+    output: Data/Mutations/sortedMutations_report3_1.vcf
+    jobid: 26
+    wildcards: treename=_report3, sample=1
+
+[Fri May 17 14:14:30 2019]
+Finished job 26.
+19 of 34 steps (56%) done
+
+[Fri May 17 14:14:30 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations_report3_1.vcf
+    output: Data/Mutations/sortedMutations_report3_1.vcf.gz
+    jobid: 15
+    wildcards: treename=_report3, sample=1
+
+Removing temporary output file Data/Mutations/sortedMutations_report3_1.vcf.
+[Fri May 17 14:14:30 2019]
+Finished job 15.
+20 of 34 steps (59%) done
+
+[Fri May 17 14:14:30 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations_report3_1.vcf.gz
+    output: Data/Mutations/sortedMutations_report3_1.vcf.gz.tbi
+    jobid: 16
+    wildcards: treename=_report3, sample=1
+
+[Fri May 17 14:14:30 2019]
+Finished job 16.
+21 of 34 steps (62%) done
+
+[Fri May 17 14:14:30 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations_report3_1.vcf.gz, Data/Mutations/sortedMutations_report3_1.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations_report3_1.fa
+    jobid: 8
+    wildcards: treename=_report3, sample=1
+
+Removing temporary output file Data/Mutations/sortedMutations_report3_1.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations_report3_1.vcf.gz.tbi.
+[Fri May 17 14:14:30 2019]
+Finished job 8.
+22 of 34 steps (65%) done
+
+[Fri May 17 14:14:30 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations_report3_1.fa
+    output: results/amplificationErrors_report3_1_calculated.txt
+    jobid: 2
+    wildcards: treename=_report3, sample=1
+
+[Fri May 17 14:14:31 2019]
+Finished job 2.
+23 of 34 steps (68%) done
+
+[Fri May 17 14:14:31 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations_report3_3.vcf
+    output: Data/Mutations/sortedMutations_report3_3.vcf
+    jobid: 28
+    wildcards: treename=_report3, sample=3
+
+[Fri May 17 14:14:31 2019]
+Finished job 28.
+24 of 34 steps (71%) done
+
+[Fri May 17 14:14:31 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations_report3_3.vcf
+    output: Data/Mutations/sortedMutations_report3_3.vcf.gz
+    jobid: 19
+    wildcards: treename=_report3, sample=3
+
+Removing temporary output file Data/Mutations/sortedMutations_report3_3.vcf.
+[Fri May 17 14:14:31 2019]
+Finished job 19.
+25 of 34 steps (74%) done
+
+[Fri May 17 14:14:31 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations_report3_3.vcf.gz
+    output: Data/Mutations/sortedMutations_report3_3.vcf.gz.tbi
+    jobid: 20
+    wildcards: treename=_report3, sample=3
+
+[Fri May 17 14:14:31 2019]
+Finished job 20.
+26 of 34 steps (76%) done
+
+[Fri May 17 14:14:31 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations_report3_3.vcf.gz, Data/Mutations/sortedMutations_report3_3.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations_report3_3.fa
+    jobid: 10
+    wildcards: treename=_report3, sample=3
+
+Removing temporary output file Data/Mutations/sortedMutations_report3_3.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations_report3_3.vcf.gz.tbi.
+[Fri May 17 14:14:31 2019]
+Finished job 10.
+27 of 34 steps (79%) done
+
+[Fri May 17 14:14:31 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations_report3_3.fa
+    output: results/amplificationErrors_report3_3_calculated.txt
+    jobid: 4
+    wildcards: treename=_report3, sample=3
+
+[Fri May 17 14:14:32 2019]
+Finished job 4.
+28 of 34 steps (82%) done
+
+[Fri May 17 14:14:32 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations_report3_0.vcf
+    output: Data/Mutations/sortedMutations_report3_0.vcf
+    jobid: 25
+    wildcards: treename=_report3, sample=0
+
+[Fri May 17 14:14:32 2019]
+Finished job 25.
+29 of 34 steps (85%) done
+
+[Fri May 17 14:14:32 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations_report3_0.vcf
+    output: Data/Mutations/sortedMutations_report3_0.vcf.gz
+    jobid: 13
+    wildcards: treename=_report3, sample=0
+
+Removing temporary output file Data/Mutations/sortedMutations_report3_0.vcf.
+[Fri May 17 14:14:33 2019]
+Finished job 13.
+30 of 34 steps (88%) done
+
+[Fri May 17 14:14:33 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations_report3_0.vcf.gz
+    output: Data/Mutations/sortedMutations_report3_0.vcf.gz.tbi
+    jobid: 14
+    wildcards: treename=_report3, sample=0
+
+[Fri May 17 14:14:33 2019]
+Finished job 14.
+31 of 34 steps (91%) done
+
+[Fri May 17 14:14:33 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations_report3_0.vcf.gz, Data/Mutations/sortedMutations_report3_0.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations_report3_0.fa
+    jobid: 7
+    wildcards: treename=_report3, sample=0
+
+Removing temporary output file Data/Mutations/sortedMutations_report3_0.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations_report3_0.vcf.gz.tbi.
+[Fri May 17 14:14:33 2019]
+Finished job 7.
+32 of 34 steps (94%) done
+
+[Fri May 17 14:14:33 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations_report3_0.fa
+    output: results/amplificationErrors_report3_0_calculated.txt
+    jobid: 1
+    wildcards: treename=_report3, sample=0
+
+[Fri May 17 14:14:34 2019]
+Finished job 1.
+33 of 34 steps (97%) done
+
+[Fri May 17 14:14:34 2019]
+rule SingleCellReadSimulator:
+    input: results/amplificationErrors_report3_0_calculated.txt, results/amplificationErrors_report3_1_calculated.txt, results/amplificationErrors_report3_2_calculated.txt, results/amplificationErrors_report3_3_calculated.txt, results/amplificationErrors_report3_4_calculated.txt, results/amplificationErrors_report3_5_calculated.txt
+    output: results/SingleCellReadSimulator_report3.txt
+    jobid: 0
+    wildcards: treename=_report3
+
+Removing temporary output file results/amplificationErrors_report3_0_calculated.txt.
+Removing temporary output file results/amplificationErrors_report3_1_calculated.txt.
+Removing temporary output file results/amplificationErrors_report3_2_calculated.txt.
+Removing temporary output file results/amplificationErrors_report3_3_calculated.txt.
+Removing temporary output file results/amplificationErrors_report3_4_calculated.txt.
+Removing temporary output file results/amplificationErrors_report3_5_calculated.txt.
+[Fri May 17 14:14:34 2019]
+Finished job 0.
+34 of 34 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-05-17T141422.652612.snakemake.log

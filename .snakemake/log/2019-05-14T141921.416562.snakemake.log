@@ -1,0 +1,23 @@
+Building DAG of jobs...
+MissingInputException in line 133 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Missing input files for rule SingleCellReadSimulator:
+results/amplificationErrors10_19.txt
+results/amplificationErrors10_6.txt
+results/amplificationErrors10_9.txt
+results/amplificationErrors10_15.txt
+results/amplificationErrors10_3.txt
+results/amplificationErrors10_11.txt
+results/amplificationErrors10_17.txt
+results/amplificationErrors10_8.txt
+results/amplificationErrors10_2.txt
+results/amplificationErrors10_7.txt
+results/amplificationErrors10_13.txt
+results/amplificationErrors10_1.txt
+results/amplificationErrors10_5.txt
+results/amplificationErrors10_10.txt
+results/amplificationErrors10_18.txt
+results/amplificationErrors10_0.txt
+results/amplificationErrors10_14.txt
+results/amplificationErrors10_16.txt
+results/amplificationErrors10_4.txt
+results/amplificationErrors10_12.txt
