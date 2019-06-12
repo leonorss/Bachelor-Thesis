@@ -1,0 +1,40 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	1	createGermlineMutations
+	1	createMutations
+	10	indexMutations
+	10	insertMutations
+	1	plotBinaryTree
+	10	simulateReads
+	10	sortMutations
+	10	zipMutations
+	54
+
+[Tue Jun 11 16:55:31 2019]
+rule plotBinaryTree:
+    input: Data/Trees/binaryTree4.txt
+    output: Data/Trees/Graph4.pdf
+    jobid: 11
+    wildcards: treename=4
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/d216ab68
+[Tue Jun 11 16:55:31 2019]
+Error in rule plotBinaryTree:
+    jobid: 11
+    output: Data/Trees/Graph4.pdf
+    conda-env: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/d216ab68
+
+RuleException:
+CalledProcessError in line 32 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Command 'source activate '/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/d216ab68'; set -euo pipefail;  /usr/local/opt/python/bin/python3.7 '/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/scripts/tmp57vsl0y6.plotTree.py'' returned non-zero exit status 1.
+  File "/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile", line 32, in __rule_plotBinaryTree
+  File "/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-06-11T165530.650404.snakemake.log

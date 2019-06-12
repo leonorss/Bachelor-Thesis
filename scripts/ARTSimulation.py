@@ -4,6 +4,11 @@ from Bio import SeqIO
 import os
 from Bio.SeqRecord import SeqRecord
 from Bio.SeqIO.QualityIO import FastqGeneralIterator
+import vcf
+
+# create necessary folders
+os.system("mkdir results")
+os.system("mkdir Data/MDASimulation")
 
 # read in seed from config file for reproducibilaty
 configSeed = snakemake.params[0] + int(snakemake.wildcards.sample)
@@ -11,7 +16,8 @@ random.seed(configSeed)
 
 # read in mean and variance of segment length from config file
 meanBinSizeLength = snakemake.params[1]
-varianceOfBinSize = snakemake.params[2]
+standartDeviationOfBinSize = snakemake.params[2]
+varianceOfBinSize = standartDeviationOfBinSize * standartDeviationOfBinSize
 
 # read in genome sequence
 genome = SeqIO.read(snakemake.input[0], "fasta")
@@ -19,17 +25,23 @@ genomeLength = len(genome)
 
 # read in mean and standart deviation of coverage from config file
 meanCoverage = snakemake.params[3]
-varianceOfCoverage = snakemake.params[4]
+standardDeviationOfCoverage = snakemake.params[4]
+varianceOfCoverage = standardDeviationOfCoverage * standardDeviationOfCoverage
 
 # read in read length from config file
 readLength = snakemake.params[5]
 
 # read in mean and standart deviation of fragment size from config file
 meanFragmentSize = snakemake.params[6]
-varianceOfFragmentSize = snakemake.params[7]
+standartDeviationOfFragmentSize = snakemake.params[7]
+varianceOfFragmentSize= standartDeviationOfFragmentSize * standartDeviationOfFragmentSize
 
 # read in the probability of an MDA amplification error
 MDAamplificationErrorProbability = snakemake.params[8]
+
+# save the name of the choosen Chromosom
+chromosomReader = vcf.Reader(filename=snakemake.params[9])
+chromosom = chromosomReader.contigs["1"][0]
 
 # save end positions of read lengths in vector
 bins = [0]
@@ -42,7 +54,7 @@ while (position < (genomeLength - 2*meanBinSizeLength)):
     # generating a random bin size with a negative binomial distribution and parameters p and r
     rBinSize = (meanBinSizeLength*meanBinSizeLength) / (varianceOfBinSize - meanBinSizeLength)
     pBinSize = (varianceOfBinSize - meanBinSizeLength) / varianceOfBinSize
-    readCoverage = np.random.negative_binomial(rBinSize, (1 - pBinSize))
+    length = np.random.negative_binomial(rBinSize, (1 - pBinSize))
 
     position = length + bins[i]
     bins.append(position)
@@ -56,6 +68,10 @@ position = length + bins[i]
 bins.append(position)
 
 bins.append(genomeLength)
+
+# creating two result vectors to save all the FASTQ outputs and create two paired ends read files later
+resultReads1 = []
+resultReads2 = []
 
 # now we create the according fasta files
 for bin in range(0, (len(bins)-1)):
@@ -175,32 +191,54 @@ for bin in range(0, (len(bins)-1)):
     # after the amplification all the records get saved into one fasta file
     SeqIO.write(records, ("Data/MDASimulation/" + nametemplate), "fasta")
 
-    #
+    # using the given read length, mean fragment size and standart deviation of fragment size art_illumina simulates
+    # the illumina sequencing system  HiSeq 2500 with paired-end read simulation
+    # note that the fold coverage is 3
     outputfile = "results/ARTRecord_Tree" + str(snakemake.wildcards.treename) + "_Sample" + str(snakemake.wildcards.sample) + "_Bin" + str(bin) + "."
-    shellCommand = "art_illumina -na -i " + ("Data/MDASimulation/" + nametemplate) + " -p -l " + str(readLength) + " -ss HS25 -f 3 -m " + str(meanFragmentSize) + " -s " + str(sqrt(varianceOfFragmentSize)) + " -o " + outputfile
+    shellCommand = "art_illumina -na -i " + ("Data/MDASimulation/" + nametemplate) + " -p -l " + str(readLength) + " -ss HS25 -f 3 -m " + str(meanFragmentSize) + " -s " + str(standartDeviationOfFragmentSize) + " -o " + outputfile
     os.system(shellCommand)
 
+    # # the fasta file is only needed for the art_illumina simulation and is deleted to save space
+    # shellCommand = "rm Data/MDASimulation/" + nametemplate
+    # os.system(shellCommand)
+
+    nameForFASTQFiles = "Chromosom " + str(chromosom) + " Allel " + str(snakemake.wildcards.sample)
+
+    # because the fold coverage is 3, we now have to randomly choose a third of the records in both art_illumina output files
+    # to get the original coverage. (This adds some more randomness to the process, making it more accurate.)
     ArtIlluminaRecords1 = []
     with open(outputfile + "1.fq") as in_handle:
         for rec in FastqGeneralIterator(in_handle):
             ArtIlluminaRecords1.append(rec)
 
-    choosenReads1 = random.sample(ArtIlluminaRecords1, (readCoverage * 2))
+    choosenReads1 = random.sample(ArtIlluminaRecords1, int(np.round(len(ArtIlluminaRecords1) / 3)))
+    # the choosen reads are saved into a resultReads1 list
+    resultReads1.extend(choosenReads1)
 
-    with open(outputfile + "1.fq", "w") as out_handle:
-        for i in range(0, (readCoverage * 2)):
-            out_handle.write("@%s\n%s\n+\n%s\n" % (choosenReads1[i][0], choosenReads1[i][1], choosenReads1[i][2]))
+    # the art_illumina output file is not needed anymore and is deleted to save space
+    shellCommand = "rm " + outputfile + "1.fq"
+    os.system(shellCommand)
 
+    # because the fold coverage is 3, we now have to randomly choose a third of the records in both art_illumina output files
+    # to get the original coverage. (This adds some more randomness to the process, making it more accurate.)
     ArtIlluminaRecords2 = []
     with open(outputfile + "2.fq") as in_handle:
         for rec in FastqGeneralIterator(in_handle):
             ArtIlluminaRecords2.append(rec)
 
-    choosenReads2 = random.sample(ArtIlluminaRecords2, (readCoverage * 2))
+    choosenReads2 = random.sample(ArtIlluminaRecords2, int(np.round(len(ArtIlluminaRecords2) / 3)))
+    # the choosen reads are saved into a resultReads2 list
+    resultReads2.extend(choosenReads2)
 
-    with open(outputfile + "2.fq", "w") as out_handle:
-        for i in range(0, readCoverage):
-            out_handle.write("@%s\n%s\n+\n%s\n" % (choosenReads2[i][0], choosenReads2[i][1], choosenReads2[i][2]))
+    # the art_illumina output file is not needed anymore and is deleted to save space
+    shellCommand = "rm " + outputfile + "2.fq"
+    os.system(shellCommand)
 
-shellCommand = "touch " + snakemake.output[0]
-os.system(shellCommand)
+# at the end all the choosen records from the resultReads lists are written into two resulting files
+with open(snakemake.output[0], "w") as out_handle:
+    for i in range(0, len(resultReads1)):
+        out_handle.write("@%s\n%s\n+\n%s\n" % (nameForFASTQFiles, resultReads1[i][1], resultReads1[i][2]))
+
+with open(snakemake.output[1], "w") as out_handle:
+    for i in range(0, len(resultReads2)):
+        out_handle.write("@%s\n%s\n+\n%s\n" % (nameForFASTQFiles, resultReads2[i][1], resultReads2[i][2]))

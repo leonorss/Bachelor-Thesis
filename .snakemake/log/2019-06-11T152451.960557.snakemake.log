@@ -1,0 +1,139 @@
+Building DAG of jobs...
+Creating conda environment envs/environment4.yaml...
+Downloading remote packages.
+Environment for envs/environment4.yaml created (location: .snakemake/conda/e3075510)
+Creating conda environment envs/environment3.yaml...
+Downloading remote packages.
+Environment for envs/environment3.yaml created (location: .snakemake/conda/bf9135f2)
+Creating conda environment envs/environment1.yaml...
+Downloading remote packages.
+Environment for envs/environment1.yaml created (location: .snakemake/conda/72b5c89d)
+Creating conda environment envs/environment2.yaml...
+Downloading remote packages.
+Environment for envs/environment2.yaml created (location: .snakemake/conda/c17ce43c)
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	1	createGermlineMutations
+	1	createMutations
+	1	generateBinaryTree
+	8	indexMutations
+	8	insertMutations
+	8	simulateReads
+	8	sortMutations
+	8	zipMutations
+	44
+
+[Tue Jun 11 15:28:21 2019]
+rule createGermlineMutations:
+    output: Data/Mutations/GermlineMutations4_Allel1.vcf, Data/Mutations/GermlineMutations4_Allel2.vcf
+    jobid: 43
+    wildcards: treename=4
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c17ce43c
+[Tue Jun 11 15:28:22 2019]
+Finished job 43.
+1 of 44 steps (2%) done
+
+[Tue Jun 11 15:28:22 2019]
+rule generateBinaryTree:
+    output: Data/Trees/binaryTree4.txt
+    jobid: 42
+    wildcards: treename=4
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/72b5c89d
+[Tue Jun 11 15:28:23 2019]
+Finished job 42.
+2 of 44 steps (5%) done
+
+[Tue Jun 11 15:28:23 2019]
+rule createMutations:
+    input: Data/Trees/binaryTree4.txt, Data/Mutations/GermlineMutations4_Allel1.vcf, Data/Mutations/GermlineMutations4_Allel2.vcf
+    output: Data/Mutations/Mutations4_0.vcf, Data/Mutations/Mutations4_1.vcf, Data/Mutations/Mutations4_2.vcf, Data/Mutations/Mutations4_3.vcf, Data/Mutations/Mutations4_4.vcf, Data/Mutations/Mutations4_5.vcf, Data/Mutations/Mutations4_6.vcf, Data/Mutations/Mutations4_7.vcf
+    jobid: 41
+    wildcards: treename=4
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/bf9135f2
+[Tue Jun 11 15:28:25 2019]
+Finished job 41.
+3 of 44 steps (7%) done
+
+[Tue Jun 11 15:28:25 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations4_6.vcf
+    output: Data/Mutations/sortedMutations4_6.vcf
+    jobid: 39
+    wildcards: treename=4, sample=6
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/e3075510
+[Tue Jun 11 15:28:25 2019]
+Finished job 39.
+4 of 44 steps (9%) done
+
+[Tue Jun 11 15:28:25 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations4_6.vcf
+    output: Data/Mutations/sortedMutations4_6.vcf.gz
+    jobid: 29
+    wildcards: treename=4, sample=6
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/e3075510
+Removing temporary output file Data/Mutations/sortedMutations4_6.vcf.
+[Tue Jun 11 15:28:25 2019]
+Finished job 29.
+5 of 44 steps (11%) done
+
+[Tue Jun 11 15:28:25 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations4_6.vcf.gz
+    output: Data/Mutations/sortedMutations4_6.vcf.gz.tbi
+    jobid: 30
+    wildcards: treename=4, sample=6
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/e3075510
+[Tue Jun 11 15:28:26 2019]
+Finished job 30.
+6 of 44 steps (14%) done
+
+[Tue Jun 11 15:28:26 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations4_6.vcf.gz, Data/Mutations/sortedMutations4_6.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations4_6.fa
+    jobid: 15
+    wildcards: treename=4, sample=6
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/e3075510
+Removing temporary output file Data/Mutations/sortedMutations4_6.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations4_6.vcf.gz.tbi.
+[Tue Jun 11 15:28:26 2019]
+Finished job 15.
+7 of 44 steps (16%) done
+
+[Tue Jun 11 15:28:26 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_6.fa
+    output: results/simulatedAmplification_Tree4_Allel6_1.fq, results/simulatedAmplification_Tree4_Allel6_2.fq
+    jobid: 7
+    wildcards: treename=4, sample=6
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4
+[Tue Jun 11 15:28:28 2019]
+Error in rule simulateReads:
+    jobid: 7
+    output: results/simulatedAmplification_Tree4_Allel6_1.fq, results/simulatedAmplification_Tree4_Allel6_2.fq
+    conda-env: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4
+
+RuleException:
+CalledProcessError in line 141 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Command 'source activate '/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4'; set -euo pipefail;  /usr/local/opt/python/bin/python3.7 '/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/scripts/tmp2nfu7q4g.ARTSimulation.py'' returned non-zero exit status 1.
+  File "/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile", line 141, in __rule_simulateReads
+  File "/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-06-11T152451.960557.snakemake.log

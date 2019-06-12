@@ -18,6 +18,22 @@ rule generateBinaryTree:
     shell:
         "python scripts/generateBinaryTree.py {params[0]} {output} {params[1]}"
 
+rule plotBinaryTree:
+    input:
+        "Data/Trees/binaryTree{treename}.txt"
+
+    output:
+        "Data/Trees/Graph{treename}.pdf"
+
+    params:
+        config["generateBinaryTree"]["numberOfLeaves"]
+
+    conda:
+        "envs/environment2.yaml"
+
+    script:
+        "scripts/plotTree.py"
+
 rule createGermlineMutations:
     output:
         "Data/Mutations/GermlineMutations{treename}_Allel1.vcf",
@@ -31,7 +47,7 @@ rule createGermlineMutations:
         config["setReferenceGenomeAndMetaDataFrame"]["metaDataFrame"]
 
     conda:
-        "envs/environment2.yaml"
+        "envs/environment3.yaml"
 
     script:
         "scripts/createGermlineMutations.py"
@@ -53,7 +69,7 @@ rule createMutations:
         config["setReferenceGenomeAndMetaDataFrame"]["metaDataFrame"]
 
     conda:
-        "envs/environment3.yaml"
+        "envs/environment4.yaml"
 
     script:
         "scripts/createMutationsFromTree.py"
@@ -66,7 +82,7 @@ rule sortMutations:
         temp("Data/Mutations/sortedMutations{treename}_{sample}.vcf")
 
     conda:
-        "envs/environment4.yaml"
+        "envs/environment5.yaml"
 
     shell:
         "bcftools sort {input} > {output}"
@@ -79,7 +95,7 @@ rule zipMutations:
         temp("Data/Mutations/sortedMutations{treename}_{sample}.vcf.gz")
 
     conda:
-        "envs/environment4.yaml"
+        "envs/environment5.yaml"
 
     shell:
         "bgzip {input}"
@@ -92,7 +108,7 @@ rule indexMutations:
         temp("Data/Mutations/sortedMutations{treename}_{sample}.vcf.gz.tbi")
 
     conda:
-        "envs/environment4.yaml"
+        "envs/environment5.yaml"
 
     shell:
         "tabix {input}"
@@ -109,7 +125,7 @@ rule insertMutations:
         config["setReferenceGenomeAndMetaDataFrame"]["referenceGenome"]
 
     conda:
-        "envs/environment4.yaml"
+        "envs/environment5.yaml"
 
     shell:
         "cat {params} | bcftools consensus {input[0]} > {output}"
@@ -119,28 +135,32 @@ rule simulateReads:
         "Data/Mutations/InsertedMutations{treename}_{sample}.fa"
 
     output:
-        temp("results/amplificationErrors{treename}_{sample}_calculated.txt")
+        "results/simulatedAmplification_Tree{treename}_Allel{sample}_1.fq",
+        "results/simulatedAmplification_Tree{treename}_Allel{sample}_2.fq"
 
     params:
         config["simulateReads"]["seed"],
         config["simulateReads"]["meanBinSize"],
-        config["simulateReads"]["varianceOfBinSize"],
+        config["simulateReads"]["standartDeviationOfBinSize"],
         config["simulateReads"]["meanCoverage"],
-        config["simulateReads"]["varianceOfCoverage"],
+        config["simulateReads"]["standartDeviationOfCoverage"],
         config["simulateReads"]["readLength"],
         config["simulateReads"]["meanFragmentSize"],
-        config["simulateReads"]["varianceOfFragmentSize"],
-        config["simulateReads"]["MDAamplificationErrorProbability"]
+        config["simulateReads"]["standartDeviationOfFragmentSize"],
+        config["simulateReads"]["MDAamplificationErrorProbability"],
+        config["setReferenceGenomeAndMetaDataFrame"]["metaDataFrame"]
 
     conda:
-        "envs/environment5.yaml"
+        "envs/environment6.yaml"
 
     script:
         "scripts/ARTSimulation.py"
 
 rule SingleCellReadSimulator:
     input:
-        expand("results/amplificationErrors{{treename}}_{sample}_calculated.txt", sample = SAMPLES)
+        expand("results/simulatedAmplification_Tree{{treename}}_Allel{sample}_1.fq", sample = SAMPLES),
+        expand("results/simulatedAmplification_Tree{{treename}}_Allel{sample}_2.fq", sample = SAMPLES),
+        "Data/Trees/Graph{treename}.pdf"
 
     output:
         "results/SingleCellReadSimulator{treename}.txt"

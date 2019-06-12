@@ -1,0 +1,37 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	7	indexMutations
+	7	insertMutations
+	8	simulateReads
+	7	sortMutations
+	7	zipMutations
+	37
+
+[Tue Jun 11 15:32:57 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_6.fa
+    output: results/simulatedAmplification_Tree4_Allel6_1.fq, results/simulatedAmplification_Tree4_Allel6_2.fq
+    jobid: 7
+    wildcards: treename=4, sample=6
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4
+[Tue Jun 11 15:32:59 2019]
+Error in rule simulateReads:
+    jobid: 7
+    output: results/simulatedAmplification_Tree4_Allel6_1.fq, results/simulatedAmplification_Tree4_Allel6_2.fq
+    conda-env: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4
+
+RuleException:
+CalledProcessError in line 141 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Command 'source activate '/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4'; set -euo pipefail;  /usr/local/opt/python/bin/python3.7 '/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/scripts/tmphx9a6qk7.ARTSimulation.py'' returned non-zero exit status 1.
+  File "/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile", line 141, in __rule_simulateReads
+  File "/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-06-11T153257.215628.snakemake.log

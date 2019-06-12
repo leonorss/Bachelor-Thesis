@@ -6,7 +6,7 @@
   },
 
   "generateBinaryTree":{
-    "numberOfLeaves": 3,
+    "numberOfLeaves": 5,
     "seed": 345
   },
 
@@ -17,23 +17,20 @@
   },
 
   "createMutations":{
-    "numberOfMutations": 2,
+    "numberOfMutations": 4,
     "seed": 490
   },
 
   "simulateReads":{
     "meanBinSize": 500,
-    "varianceOfBinSize": 100,
+    "standartDeviationOfBinSize": 100,
     "seed": 7643,
     "meanCoverage": 3,
-    "varianceOfCoverage": 3,
+    "standartDeviationOfCoverage": 2,
     "readLength": 100,
     "meanFragmentSize": 250,
-    "varianceOfFragmentSize": 15,
+    "standartDeviationOfFragmentSize": 16,
     "MDAamplificationErrorProbability": 0.0000001
   }
-
-
-
 
 }

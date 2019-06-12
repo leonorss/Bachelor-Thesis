@@ -1,0 +1,34 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	7	indexMutations
+	7	insertMutations
+	8	simulateReads
+	7	sortMutations
+	7	zipMutations
+	37
+
+[Mon Jun  3 17:05:26 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_5.fa
+    output: results/amplificationErrors4_5_calculated.txt
+    jobid: 6
+    wildcards: treename=4, sample=5
+
+[Mon Jun  3 17:05:27 2019]
+Error in rule simulateReads:
+    jobid: 6
+    output: results/amplificationErrors4_5_calculated.txt
+
+RuleException:
+CalledProcessError in line 142 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Command 'set -euo pipefail;  /usr/local/opt/python/bin/python3.7 '/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/scripts/tmp9jl9pbe_.ARTSimulation.py'' returned non-zero exit status 1.
+  File "/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile", line 142, in __rule_simulateReads
+  File "/usr/local/Cellar/python/3.7.2_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-06-03T170526.398780.snakemake.log

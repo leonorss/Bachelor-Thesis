@@ -1,0 +1,3 @@
+KeyError in line 132 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+'standartDeviationOfFragmentSiz'
+  File "/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile", line 132, in <module>

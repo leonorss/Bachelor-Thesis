@@ -286,16 +286,3 @@ for heterozygousMutation in range(0, numberOfHeterozygousGermlineMutations):
 # close writers
 vcfWriter1.close()
 vcfWriter2.close()
-
-
-
-
-
-
-
-# f1= open(snakemake.output[0],"w+")
-# f2= open(snakemake.output[1],"w+")
-# f1.write("%i" %(n_g_m))
-# f2.write("%i" %(n_g_m))
-# f1.close()
-# f2.close()

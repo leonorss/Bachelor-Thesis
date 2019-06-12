@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	1
+
+[Tue Jun 11 17:50:06 2019]
+rule SingleCellReadSimulator:
+    input: results/simulatedAmplification_Tree4_Allel0_1.fq, results/simulatedAmplification_Tree4_Allel1_1.fq, results/simulatedAmplification_Tree4_Allel2_1.fq, results/simulatedAmplification_Tree4_Allel3_1.fq, results/simulatedAmplification_Tree4_Allel4_1.fq, results/simulatedAmplification_Tree4_Allel5_1.fq, results/simulatedAmplification_Tree4_Allel6_1.fq, results/simulatedAmplification_Tree4_Allel7_1.fq, results/simulatedAmplification_Tree4_Allel8_1.fq, results/simulatedAmplification_Tree4_Allel9_1.fq, results/simulatedAmplification_Tree4_Allel0_2.fq, results/simulatedAmplification_Tree4_Allel1_2.fq, results/simulatedAmplification_Tree4_Allel2_2.fq, results/simulatedAmplification_Tree4_Allel3_2.fq, results/simulatedAmplification_Tree4_Allel4_2.fq, results/simulatedAmplification_Tree4_Allel5_2.fq, results/simulatedAmplification_Tree4_Allel6_2.fq, results/simulatedAmplification_Tree4_Allel7_2.fq, results/simulatedAmplification_Tree4_Allel8_2.fq, results/simulatedAmplification_Tree4_Allel9_2.fq, Data/Trees/Graph4.pdf
+    output: results/SingleCellReadSimulator4.txt
+    jobid: 0
+    wildcards: treename=4
+
+[Tue Jun 11 17:50:06 2019]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-06-11T175006.020253.snakemake.log

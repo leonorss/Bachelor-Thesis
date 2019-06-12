@@ -7,7 +7,7 @@ import numpy as np
 configSeed = snakemake.params[2]
 random.seed(configSeed)
 
-# number of mutations: if one mutation at every internal node except the root n-2
+# number of mutations
 numberOfMutations = snakemake.params[0]
 
 # read in reference Genome to check that we don't insert Mutations, that actually don't change the Genome
@@ -24,9 +24,10 @@ vcfReader_Allel1 = vcf.Reader(filename=snakemake.input[1])
 vcfReader_Allel2 = vcf.Reader(filename=snakemake.input[2])
 chromosomId = int(vcfReader_MetaData.contigs["1"][0])
 
-# save created mutations and positions to insert into vcf files later
+# save created mutations and positions to insert into vcf files later, as well as in which allel they happened
 randomPostions = np.zeros(numberOfMutations)
 mutatedNucleotids = np.chararray(numberOfMutations)
+choosenAllels = np.zeros(numberOfMutations)
 
 for mutation in range(0, numberOfMutations):
     inserted = 0
@@ -39,6 +40,9 @@ for mutation in range(0, numberOfMutations):
         insertPlace = random.randrange(0, referenceGenomeLength)
         alreadyMutated = 0
 
+        # choose either Allel randomly
+        allel = random.randint(1, 2)
+
         # case nucleotid="A"
         if newMutation==1:
             mutatedNucleotid = "A"
@@ -47,15 +51,16 @@ for mutation in range(0, numberOfMutations):
             if (mutatedNucleotid != referenceGenome[insertPlace]) and ("a" != referenceGenome[insertPlace]):
 
                 # check that we don't mutate the same nucleotid as in we already did in the germline mutations
-                vcfReader_Allel1 = vcf.Reader(filename=snakemake.input[1])
+                if (allel == 1):
+                    vcfReader_Allel1 = vcf.Reader(filename=snakemake.input[1])
 
-                for existingRecord in vcfReader_Allel1:
+                    for existingRecord in vcfReader_Allel1:
 
-                    if insertPlace == existingRecord.POS:
-                        alreadyMutated = 1
-                        break
+                        if insertPlace == existingRecord.POS:
+                            alreadyMutated = 1
+                            break
 
-                if alreadyMutated != 1:
+                else:
 
                     # check that we don't mutate the same nucleotid as in we already did in the germline mutations
                     vcfReader_Allel2 = vcf.Reader(filename=snakemake.input[2])
@@ -68,6 +73,7 @@ for mutation in range(0, numberOfMutations):
                 # inserting the mutations and their insert positions into the arrays randomPostions and mutatedNucleotids
                 if alreadyMutated == 0:
                     inserted = 1
+                    choosenAllels[mutation] = allel
                     randomPostions[mutation] = insertPlace
                     mutatedNucleotids[mutation] = mutatedNucleotid
 
@@ -78,15 +84,16 @@ for mutation in range(0, numberOfMutations):
             # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
             if (mutatedNucleotid != referenceGenome[insertPlace]) and ("c" != referenceGenome[insertPlace]):
 
-                # check that we don't mutate the same nucleotid as in we already did in the germline mutations
-                vcfReader_Allel1 = vcf.Reader(filename=snakemake.input[1])
+                if (allel == 1):
+                    # check that we don't mutate the same nucleotid as in we already did in the germline mutations
+                    vcfReader_Allel1 = vcf.Reader(filename=snakemake.input[1])
 
-                for existingRecord in vcfReader_Allel1:
-                    if insertPlace == existingRecord.POS:
-                        alreadyMutated = 1
-                        break
+                    for existingRecord in vcfReader_Allel1:
+                        if insertPlace == existingRecord.POS:
+                            alreadyMutated = 1
+                            break
 
-                if alreadyMutated != 1:
+                else:
 
                     # check that we don't mutate the same nucleotid as in we already did in the germline mutations
                     vcfReader_Allel2 = vcf.Reader(filename=snakemake.input[2])
@@ -99,6 +106,7 @@ for mutation in range(0, numberOfMutations):
                 # inserting the mutations and their insert positions into the arrays randomPostions and mutatedNucleotids
                 if alreadyMutated == 0:
                     inserted = 1
+                    choosenAllels[mutation] = allel
                     randomPostions[mutation] = insertPlace
                     mutatedNucleotids[mutation] = mutatedNucleotid
 
@@ -109,15 +117,16 @@ for mutation in range(0, numberOfMutations):
             # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
             if (mutatedNucleotid != referenceGenome[insertPlace]) and ("g" != referenceGenome[insertPlace]):
 
-                # check that we don't mutate the same nucleotid as in we already did in the germline mutations
-                vcfReader_Allel1 = vcf.Reader(filename=snakemake.input[1])
+                if (allel == 1):
+                    # check that we don't mutate the same nucleotid as in we already did in the germline mutations
+                    vcfReader_Allel1 = vcf.Reader(filename=snakemake.input[1])
 
-                for existingRecord in vcfReader_Allel1:
-                    if insertPlace == existingRecord.POS:
-                        alreadyMutated = 1
-                        break
+                    for existingRecord in vcfReader_Allel1:
+                        if insertPlace == existingRecord.POS:
+                            alreadyMutated = 1
+                            break
 
-                if alreadyMutated != 1:
+                else:
 
                     # check that we don't mutate the same nucleotid as in we already did in the germline mutations
                     vcfReader_Allel2 = vcf.Reader(filename=snakemake.input[2])
@@ -130,6 +139,7 @@ for mutation in range(0, numberOfMutations):
                 # inserting the mutations and their insert positions into the arrays randomPostions and mutatedNucleotids
                 if alreadyMutated == 0:
                     inserted = 1
+                    choosenAllels[mutation] = allel
                     randomPostions[mutation] = insertPlace
                     mutatedNucleotids[mutation] = mutatedNucleotid
 
@@ -140,15 +150,16 @@ for mutation in range(0, numberOfMutations):
             # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
             if (mutatedNucleotid != referenceGenome[insertPlace]) and ("t" != referenceGenome[insertPlace]):
 
-                # check that we don't mutate the same nucleotid as in we already did in the germline mutations
-                vcfReader_Allel1 = vcf.Reader(filename=snakemake.input[1])
+                if (allel == 1):
+                    # check that we don't mutate the same nucleotid as in we already did in the germline mutations
+                    vcfReader_Allel1 = vcf.Reader(filename=snakemake.input[1])
 
-                for existingRecord in vcfReader_Allel1:
-                    if insertPlace == existingRecord.POS:
-                        alreadyMutated = 1
-                        break
+                    for existingRecord in vcfReader_Allel1:
+                        if insertPlace == existingRecord.POS:
+                            alreadyMutated = 1
+                            break
 
-                if alreadyMutated != 1:
+                else:
 
                     # check that we don't mutate the same nucleotid as in we already did in the germline mutations
                     vcfReader_Allel2 = vcf.Reader(filename=snakemake.input[2])
@@ -161,11 +172,12 @@ for mutation in range(0, numberOfMutations):
                 # inserting the mutations and their insert positions into the arrays randomPostions and mutatedNucleotids
                 if alreadyMutated == 0:
                     inserted = 1
+                    choosenAllels[mutation] = allel
                     randomPostions[mutation] = insertPlace
                     mutatedNucleotids[mutation] = mutatedNucleotid
 
-# for every leave saving its mutations: row=mutations, columns=leave
-mutationsOfAllLeaves = np.zeros([numberOfMutations, (2*leaves)])
+# for every node saving its mutations: row=mutations, columns=nodes
+mutationsOfAllLeaves = np.zeros([(numberOfMutations + 1), (2 * leaves - 1)])
 
 # insert mutations of a node into all it's children
 def insertMutationIntoChildren(parent, mutation):
@@ -190,12 +202,13 @@ for mutation in range(0, numberOfMutations):
             insertMutationIntoChildren(insertionNode, mutation)
             inserted = 1
 
-# create output files
+# create output files for every leave (both alleles)
 for leave in range(0, leaves):
 
     vcf_writer1 = vcf.Writer(open(snakemake.output[leave], "w"), vcfReader_MetaData)
     vcf_writer2 = vcf.Writer(open(snakemake.output[leaves + leave], "w"), vcfReader_MetaData)
 
+    # copy the germline mutations for each allele
     vcfReader_Allel1 = vcf.Reader(filename=snakemake.input[1])
     for record in vcfReader_Allel1:
         vcf_writer1.write_record(record)
@@ -206,19 +219,28 @@ for leave in range(0, leaves):
         vcf_writer2.write_record(record)
         vcf_writer2.flush()
 
+    # saving the index of the leave in the mutationsOfAllLeaves
+    leaveIndex = np.where(tree[2][:] == leave)
+
+    # checking for every mutation, if the leave has it and adding it accordingly
     for mutation in range(0, numberOfMutations):
 
-        if (mutationsOfAllLeaves[mutation][leave] == 1):
+        if (mutationsOfAllLeaves[mutation][leaveIndex] == 1):
             position = int(randomPostions[mutation])
-            mutation = mutatedNucleotids[mutation]
+            insertMutation = mutatedNucleotids[mutation]
             record = vcf.model._Record(CHROM=chromosomId, POS=(position+1), ID='.',
                         REF=vcf.model._Substitution(referenceGenome[position]),
-                        ALT=[vcf.model._Substitution(mutation)], QUAL='.', FILTER='PASS', INFO={},
+                        ALT=[vcf.model._Substitution(insertMutation)], QUAL='.', FILTER='PASS', INFO={},
                         FORMAT=".", sample_indexes=[], samples=None)
-            vcf_writer1.write_record(record)
-            vcf_writer2.write_record(record)
-            vcf_writer1.flush()
-            vcf_writer2.flush()
 
+            # add it to the choosen allel
+            if (choosenAllels[mutation] == 1):
+                vcf_writer1.write_record(record)
+                vcf_writer1.flush()
+            else:
+                vcf_writer2.write_record(record)
+                vcf_writer2.flush()
+                
+    # close the writers
     vcf_writer1.close()
     vcf_writer2.close()

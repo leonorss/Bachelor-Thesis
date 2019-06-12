@@ -1,0 +1,125 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	8	simulateReads
+	9
+
+[Tue Jun 11 15:14:14 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_6.fa
+    output: Data/MDASimulation/amplificationErrors4_6_1.fq, Data/MDASimulation/amplificationErrors4_6_2.fq
+    jobid: 7
+    wildcards: treename=4, sample=6
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4
+[Tue Jun 11 15:14:16 2019]
+Finished job 7.
+1 of 9 steps (11%) done
+
+[Tue Jun 11 15:14:16 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_3.fa
+    output: Data/MDASimulation/amplificationErrors4_3_1.fq, Data/MDASimulation/amplificationErrors4_3_2.fq
+    jobid: 4
+    wildcards: treename=4, sample=3
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4
+[Tue Jun 11 15:14:18 2019]
+Finished job 4.
+2 of 9 steps (22%) done
+
+[Tue Jun 11 15:14:18 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_2.fa
+    output: Data/MDASimulation/amplificationErrors4_2_1.fq, Data/MDASimulation/amplificationErrors4_2_2.fq
+    jobid: 3
+    wildcards: treename=4, sample=2
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4
+[Tue Jun 11 15:14:20 2019]
+Finished job 3.
+3 of 9 steps (33%) done
+
+[Tue Jun 11 15:14:20 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_5.fa
+    output: Data/MDASimulation/amplificationErrors4_5_1.fq, Data/MDASimulation/amplificationErrors4_5_2.fq
+    jobid: 6
+    wildcards: treename=4, sample=5
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4
+[Tue Jun 11 15:14:21 2019]
+Finished job 6.
+4 of 9 steps (44%) done
+
+[Tue Jun 11 15:14:21 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_1.fa
+    output: Data/MDASimulation/amplificationErrors4_1_1.fq, Data/MDASimulation/amplificationErrors4_1_2.fq
+    jobid: 2
+    wildcards: treename=4, sample=1
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4
+[Tue Jun 11 15:14:23 2019]
+Finished job 2.
+5 of 9 steps (56%) done
+
+[Tue Jun 11 15:14:23 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_7.fa
+    output: Data/MDASimulation/amplificationErrors4_7_1.fq, Data/MDASimulation/amplificationErrors4_7_2.fq
+    jobid: 8
+    wildcards: treename=4, sample=7
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4
+[Tue Jun 11 15:14:25 2019]
+Finished job 8.
+6 of 9 steps (67%) done
+
+[Tue Jun 11 15:14:25 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_4.fa
+    output: Data/MDASimulation/amplificationErrors4_4_1.fq, Data/MDASimulation/amplificationErrors4_4_2.fq
+    jobid: 5
+    wildcards: treename=4, sample=4
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4
+[Tue Jun 11 15:14:26 2019]
+Finished job 5.
+7 of 9 steps (78%) done
+
+[Tue Jun 11 15:14:26 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_0.fa
+    output: Data/MDASimulation/amplificationErrors4_0_1.fq, Data/MDASimulation/amplificationErrors4_0_2.fq
+    jobid: 1
+    wildcards: treename=4, sample=0
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/c7824ab4
+[Tue Jun 11 15:14:28 2019]
+Finished job 1.
+8 of 9 steps (89%) done
+
+[Tue Jun 11 15:14:28 2019]
+rule SingleCellReadSimulator:
+    input: Data/MDASimulation/amplificationErrors4_0_1.fq, Data/MDASimulation/amplificationErrors4_1_1.fq, Data/MDASimulation/amplificationErrors4_2_1.fq, Data/MDASimulation/amplificationErrors4_3_1.fq, Data/MDASimulation/amplificationErrors4_4_1.fq, Data/MDASimulation/amplificationErrors4_5_1.fq, Data/MDASimulation/amplificationErrors4_6_1.fq, Data/MDASimulation/amplificationErrors4_7_1.fq, Data/MDASimulation/amplificationErrors4_0_2.fq, Data/MDASimulation/amplificationErrors4_1_2.fq, Data/MDASimulation/amplificationErrors4_2_2.fq, Data/MDASimulation/amplificationErrors4_3_2.fq, Data/MDASimulation/amplificationErrors4_4_2.fq, Data/MDASimulation/amplificationErrors4_5_2.fq, Data/MDASimulation/amplificationErrors4_6_2.fq, Data/MDASimulation/amplificationErrors4_7_2.fq
+    output: results/SingleCellReadSimulator4.txt
+    jobid: 0
+    wildcards: treename=4
+
+[Tue Jun 11 15:14:28 2019]
+Finished job 0.
+9 of 9 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-06-11T151414.380454.snakemake.log

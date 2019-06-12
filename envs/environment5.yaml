@@ -4,7 +4,6 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - python=3.4
-  - numpy
-  - biopython
-  - art
+  - samtools
+  - bcftools
+  - htslib

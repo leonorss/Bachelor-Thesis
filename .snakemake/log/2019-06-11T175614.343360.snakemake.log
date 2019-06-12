@@ -1,0 +1,693 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	1	createMutations
+	10	indexMutations
+	10	insertMutations
+	1	plotBinaryTree
+	10	simulateReads
+	10	sortMutations
+	10	zipMutations
+	53
+
+[Tue Jun 11 17:56:15 2019]
+rule createMutations:
+    input: Data/Trees/binaryTree4.txt, Data/Mutations/GermlineMutations4_Allel1.vcf, Data/Mutations/GermlineMutations4_Allel2.vcf
+    output: Data/Mutations/Mutations4_0.vcf, Data/Mutations/Mutations4_1.vcf, Data/Mutations/Mutations4_2.vcf, Data/Mutations/Mutations4_3.vcf, Data/Mutations/Mutations4_4.vcf, Data/Mutations/Mutations4_5.vcf, Data/Mutations/Mutations4_6.vcf, Data/Mutations/Mutations4_7.vcf, Data/Mutations/Mutations4_8.vcf, Data/Mutations/Mutations4_9.vcf
+    jobid: 53
+    wildcards: treename=4
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/47abf826
+[Tue Jun 11 17:56:16 2019]
+Finished job 53.
+1 of 53 steps (2%) done
+
+[Tue Jun 11 17:56:16 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations4_6.vcf
+    output: Data/Mutations/sortedMutations4_6.vcf
+    jobid: 49
+    wildcards: treename=4, sample=6
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:16 2019]
+Finished job 49.
+2 of 53 steps (4%) done
+
+[Tue Jun 11 17:56:16 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations4_6.vcf
+    output: Data/Mutations/sortedMutations4_6.vcf.gz
+    jobid: 35
+    wildcards: treename=4, sample=6
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_6.vcf.
+[Tue Jun 11 17:56:17 2019]
+Finished job 35.
+3 of 53 steps (6%) done
+
+[Tue Jun 11 17:56:17 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations4_6.vcf.gz
+    output: Data/Mutations/sortedMutations4_6.vcf.gz.tbi
+    jobid: 36
+    wildcards: treename=4, sample=6
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:17 2019]
+Finished job 36.
+4 of 53 steps (8%) done
+
+[Tue Jun 11 17:56:17 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations4_6.vcf.gz, Data/Mutations/sortedMutations4_6.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations4_6.fa
+    jobid: 18
+    wildcards: treename=4, sample=6
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_6.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations4_6.vcf.gz.tbi.
+[Tue Jun 11 17:56:17 2019]
+Finished job 18.
+5 of 53 steps (9%) done
+
+[Tue Jun 11 17:56:17 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_6.fa
+    output: results/simulatedAmplification_Tree4_Allel6_1.fq, results/simulatedAmplification_Tree4_Allel6_2.fq
+    jobid: 7
+    wildcards: treename=4, sample=6
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/8237f946
+[Tue Jun 11 17:56:19 2019]
+Finished job 7.
+6 of 53 steps (11%) done
+
+[Tue Jun 11 17:56:19 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations4_8.vcf
+    output: Data/Mutations/sortedMutations4_8.vcf
+    jobid: 51
+    wildcards: treename=4, sample=8
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:19 2019]
+Finished job 51.
+7 of 53 steps (13%) done
+
+[Tue Jun 11 17:56:19 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations4_8.vcf
+    output: Data/Mutations/sortedMutations4_8.vcf.gz
+    jobid: 39
+    wildcards: treename=4, sample=8
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_8.vcf.
+[Tue Jun 11 17:56:20 2019]
+Finished job 39.
+8 of 53 steps (15%) done
+
+[Tue Jun 11 17:56:20 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations4_8.vcf.gz
+    output: Data/Mutations/sortedMutations4_8.vcf.gz.tbi
+    jobid: 40
+    wildcards: treename=4, sample=8
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:20 2019]
+Finished job 40.
+9 of 53 steps (17%) done
+
+[Tue Jun 11 17:56:20 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations4_8.vcf.gz, Data/Mutations/sortedMutations4_8.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations4_8.fa
+    jobid: 20
+    wildcards: treename=4, sample=8
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_8.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations4_8.vcf.gz.tbi.
+[Tue Jun 11 17:56:20 2019]
+Finished job 20.
+10 of 53 steps (19%) done
+
+[Tue Jun 11 17:56:20 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_8.fa
+    output: results/simulatedAmplification_Tree4_Allel8_1.fq, results/simulatedAmplification_Tree4_Allel8_2.fq
+    jobid: 9
+    wildcards: treename=4, sample=8
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/8237f946
+[Tue Jun 11 17:56:22 2019]
+Finished job 9.
+11 of 53 steps (21%) done
+
+[Tue Jun 11 17:56:22 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations4_7.vcf
+    output: Data/Mutations/sortedMutations4_7.vcf
+    jobid: 50
+    wildcards: treename=4, sample=7
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:22 2019]
+Finished job 50.
+12 of 53 steps (23%) done
+
+[Tue Jun 11 17:56:22 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations4_7.vcf
+    output: Data/Mutations/sortedMutations4_7.vcf.gz
+    jobid: 37
+    wildcards: treename=4, sample=7
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_7.vcf.
+[Tue Jun 11 17:56:23 2019]
+Finished job 37.
+13 of 53 steps (25%) done
+
+[Tue Jun 11 17:56:23 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations4_7.vcf.gz
+    output: Data/Mutations/sortedMutations4_7.vcf.gz.tbi
+    jobid: 38
+    wildcards: treename=4, sample=7
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:23 2019]
+Finished job 38.
+14 of 53 steps (26%) done
+
+[Tue Jun 11 17:56:23 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations4_7.vcf.gz, Data/Mutations/sortedMutations4_7.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations4_7.fa
+    jobid: 19
+    wildcards: treename=4, sample=7
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_7.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations4_7.vcf.gz.tbi.
+[Tue Jun 11 17:56:23 2019]
+Finished job 19.
+15 of 53 steps (28%) done
+
+[Tue Jun 11 17:56:23 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_7.fa
+    output: results/simulatedAmplification_Tree4_Allel7_1.fq, results/simulatedAmplification_Tree4_Allel7_2.fq
+    jobid: 8
+    wildcards: treename=4, sample=7
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/8237f946
+[Tue Jun 11 17:56:25 2019]
+Finished job 8.
+16 of 53 steps (30%) done
+
+[Tue Jun 11 17:56:25 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations4_4.vcf
+    output: Data/Mutations/sortedMutations4_4.vcf
+    jobid: 47
+    wildcards: treename=4, sample=4
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:25 2019]
+Finished job 47.
+17 of 53 steps (32%) done
+
+[Tue Jun 11 17:56:25 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations4_4.vcf
+    output: Data/Mutations/sortedMutations4_4.vcf.gz
+    jobid: 31
+    wildcards: treename=4, sample=4
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_4.vcf.
+[Tue Jun 11 17:56:25 2019]
+Finished job 31.
+18 of 53 steps (34%) done
+
+[Tue Jun 11 17:56:25 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations4_4.vcf.gz
+    output: Data/Mutations/sortedMutations4_4.vcf.gz.tbi
+    jobid: 32
+    wildcards: treename=4, sample=4
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:26 2019]
+Finished job 32.
+19 of 53 steps (36%) done
+
+[Tue Jun 11 17:56:26 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations4_4.vcf.gz, Data/Mutations/sortedMutations4_4.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations4_4.fa
+    jobid: 16
+    wildcards: treename=4, sample=4
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_4.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations4_4.vcf.gz.tbi.
+[Tue Jun 11 17:56:26 2019]
+Finished job 16.
+20 of 53 steps (38%) done
+
+[Tue Jun 11 17:56:26 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_4.fa
+    output: results/simulatedAmplification_Tree4_Allel4_1.fq, results/simulatedAmplification_Tree4_Allel4_2.fq
+    jobid: 5
+    wildcards: treename=4, sample=4
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/8237f946
+[Tue Jun 11 17:56:28 2019]
+Finished job 5.
+21 of 53 steps (40%) done
+
+[Tue Jun 11 17:56:28 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations4_9.vcf
+    output: Data/Mutations/sortedMutations4_9.vcf
+    jobid: 52
+    wildcards: treename=4, sample=9
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:28 2019]
+Finished job 52.
+22 of 53 steps (42%) done
+
+[Tue Jun 11 17:56:28 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations4_9.vcf
+    output: Data/Mutations/sortedMutations4_9.vcf.gz
+    jobid: 41
+    wildcards: treename=4, sample=9
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_9.vcf.
+[Tue Jun 11 17:56:28 2019]
+Finished job 41.
+23 of 53 steps (43%) done
+
+[Tue Jun 11 17:56:28 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations4_9.vcf.gz
+    output: Data/Mutations/sortedMutations4_9.vcf.gz.tbi
+    jobid: 42
+    wildcards: treename=4, sample=9
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:29 2019]
+Finished job 42.
+24 of 53 steps (45%) done
+
+[Tue Jun 11 17:56:29 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations4_9.vcf.gz, Data/Mutations/sortedMutations4_9.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations4_9.fa
+    jobid: 21
+    wildcards: treename=4, sample=9
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_9.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations4_9.vcf.gz.tbi.
+[Tue Jun 11 17:56:29 2019]
+Finished job 21.
+25 of 53 steps (47%) done
+
+[Tue Jun 11 17:56:29 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_9.fa
+    output: results/simulatedAmplification_Tree4_Allel9_1.fq, results/simulatedAmplification_Tree4_Allel9_2.fq
+    jobid: 10
+    wildcards: treename=4, sample=9
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/8237f946
+[Tue Jun 11 17:56:31 2019]
+Finished job 10.
+26 of 53 steps (49%) done
+
+[Tue Jun 11 17:56:31 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations4_5.vcf
+    output: Data/Mutations/sortedMutations4_5.vcf
+    jobid: 48
+    wildcards: treename=4, sample=5
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:31 2019]
+Finished job 48.
+27 of 53 steps (51%) done
+
+[Tue Jun 11 17:56:31 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations4_5.vcf
+    output: Data/Mutations/sortedMutations4_5.vcf.gz
+    jobid: 33
+    wildcards: treename=4, sample=5
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_5.vcf.
+[Tue Jun 11 17:56:31 2019]
+Finished job 33.
+28 of 53 steps (53%) done
+
+[Tue Jun 11 17:56:31 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations4_5.vcf.gz
+    output: Data/Mutations/sortedMutations4_5.vcf.gz.tbi
+    jobid: 34
+    wildcards: treename=4, sample=5
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:32 2019]
+Finished job 34.
+29 of 53 steps (55%) done
+
+[Tue Jun 11 17:56:32 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations4_5.vcf.gz, Data/Mutations/sortedMutations4_5.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations4_5.fa
+    jobid: 17
+    wildcards: treename=4, sample=5
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_5.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations4_5.vcf.gz.tbi.
+[Tue Jun 11 17:56:32 2019]
+Finished job 17.
+30 of 53 steps (57%) done
+
+[Tue Jun 11 17:56:32 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_5.fa
+    output: results/simulatedAmplification_Tree4_Allel5_1.fq, results/simulatedAmplification_Tree4_Allel5_2.fq
+    jobid: 6
+    wildcards: treename=4, sample=5
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/8237f946
+[Tue Jun 11 17:56:34 2019]
+Finished job 6.
+31 of 53 steps (58%) done
+
+[Tue Jun 11 17:56:34 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations4_1.vcf
+    output: Data/Mutations/sortedMutations4_1.vcf
+    jobid: 44
+    wildcards: treename=4, sample=1
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:34 2019]
+Finished job 44.
+32 of 53 steps (60%) done
+
+[Tue Jun 11 17:56:34 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations4_1.vcf
+    output: Data/Mutations/sortedMutations4_1.vcf.gz
+    jobid: 25
+    wildcards: treename=4, sample=1
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_1.vcf.
+[Tue Jun 11 17:56:35 2019]
+Finished job 25.
+33 of 53 steps (62%) done
+
+[Tue Jun 11 17:56:35 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations4_1.vcf.gz
+    output: Data/Mutations/sortedMutations4_1.vcf.gz.tbi
+    jobid: 26
+    wildcards: treename=4, sample=1
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:35 2019]
+Finished job 26.
+34 of 53 steps (64%) done
+
+[Tue Jun 11 17:56:35 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations4_1.vcf.gz, Data/Mutations/sortedMutations4_1.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations4_1.fa
+    jobid: 13
+    wildcards: treename=4, sample=1
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_1.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations4_1.vcf.gz.tbi.
+[Tue Jun 11 17:56:36 2019]
+Finished job 13.
+35 of 53 steps (66%) done
+
+[Tue Jun 11 17:56:36 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_1.fa
+    output: results/simulatedAmplification_Tree4_Allel1_1.fq, results/simulatedAmplification_Tree4_Allel1_2.fq
+    jobid: 2
+    wildcards: treename=4, sample=1
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/8237f946
+[Tue Jun 11 17:56:37 2019]
+Finished job 2.
+36 of 53 steps (68%) done
+
+[Tue Jun 11 17:56:37 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations4_2.vcf
+    output: Data/Mutations/sortedMutations4_2.vcf
+    jobid: 45
+    wildcards: treename=4, sample=2
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:38 2019]
+Finished job 45.
+37 of 53 steps (70%) done
+
+[Tue Jun 11 17:56:38 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations4_2.vcf
+    output: Data/Mutations/sortedMutations4_2.vcf.gz
+    jobid: 27
+    wildcards: treename=4, sample=2
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_2.vcf.
+[Tue Jun 11 17:56:38 2019]
+Finished job 27.
+38 of 53 steps (72%) done
+
+[Tue Jun 11 17:56:38 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations4_2.vcf.gz
+    output: Data/Mutations/sortedMutations4_2.vcf.gz.tbi
+    jobid: 28
+    wildcards: treename=4, sample=2
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:38 2019]
+Finished job 28.
+39 of 53 steps (74%) done
+
+[Tue Jun 11 17:56:38 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations4_2.vcf.gz, Data/Mutations/sortedMutations4_2.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations4_2.fa
+    jobid: 14
+    wildcards: treename=4, sample=2
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_2.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations4_2.vcf.gz.tbi.
+[Tue Jun 11 17:56:39 2019]
+Finished job 14.
+40 of 53 steps (75%) done
+
+[Tue Jun 11 17:56:39 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_2.fa
+    output: results/simulatedAmplification_Tree4_Allel2_1.fq, results/simulatedAmplification_Tree4_Allel2_2.fq
+    jobid: 3
+    wildcards: treename=4, sample=2
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/8237f946
+[Tue Jun 11 17:56:40 2019]
+Finished job 3.
+41 of 53 steps (77%) done
+
+[Tue Jun 11 17:56:40 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations4_0.vcf
+    output: Data/Mutations/sortedMutations4_0.vcf
+    jobid: 43
+    wildcards: treename=4, sample=0
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:41 2019]
+Finished job 43.
+42 of 53 steps (79%) done
+
+[Tue Jun 11 17:56:41 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations4_0.vcf
+    output: Data/Mutations/sortedMutations4_0.vcf.gz
+    jobid: 23
+    wildcards: treename=4, sample=0
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_0.vcf.
+[Tue Jun 11 17:56:41 2019]
+Finished job 23.
+43 of 53 steps (81%) done
+
+[Tue Jun 11 17:56:41 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations4_0.vcf.gz
+    output: Data/Mutations/sortedMutations4_0.vcf.gz.tbi
+    jobid: 24
+    wildcards: treename=4, sample=0
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:41 2019]
+Finished job 24.
+44 of 53 steps (83%) done
+
+[Tue Jun 11 17:56:41 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations4_0.vcf.gz, Data/Mutations/sortedMutations4_0.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations4_0.fa
+    jobid: 12
+    wildcards: treename=4, sample=0
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_0.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations4_0.vcf.gz.tbi.
+[Tue Jun 11 17:56:42 2019]
+Finished job 12.
+45 of 53 steps (85%) done
+
+[Tue Jun 11 17:56:42 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_0.fa
+    output: results/simulatedAmplification_Tree4_Allel0_1.fq, results/simulatedAmplification_Tree4_Allel0_2.fq
+    jobid: 1
+    wildcards: treename=4, sample=0
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/8237f946
+[Tue Jun 11 17:56:44 2019]
+Finished job 1.
+46 of 53 steps (87%) done
+
+[Tue Jun 11 17:56:44 2019]
+rule sortMutations:
+    input: Data/Mutations/Mutations4_3.vcf
+    output: Data/Mutations/sortedMutations4_3.vcf
+    jobid: 46
+    wildcards: treename=4, sample=3
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:44 2019]
+Finished job 46.
+47 of 53 steps (89%) done
+
+[Tue Jun 11 17:56:44 2019]
+rule zipMutations:
+    input: Data/Mutations/sortedMutations4_3.vcf
+    output: Data/Mutations/sortedMutations4_3.vcf.gz
+    jobid: 29
+    wildcards: treename=4, sample=3
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_3.vcf.
+[Tue Jun 11 17:56:44 2019]
+Finished job 29.
+48 of 53 steps (91%) done
+
+[Tue Jun 11 17:56:44 2019]
+rule indexMutations:
+    input: Data/Mutations/sortedMutations4_3.vcf.gz
+    output: Data/Mutations/sortedMutations4_3.vcf.gz.tbi
+    jobid: 30
+    wildcards: treename=4, sample=3
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+[Tue Jun 11 17:56:45 2019]
+Finished job 30.
+49 of 53 steps (92%) done
+
+[Tue Jun 11 17:56:45 2019]
+rule insertMutations:
+    input: Data/Mutations/sortedMutations4_3.vcf.gz, Data/Mutations/sortedMutations4_3.vcf.gz.tbi
+    output: Data/Mutations/InsertedMutations4_3.fa
+    jobid: 15
+    wildcards: treename=4, sample=3
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/94172ea4
+Removing temporary output file Data/Mutations/sortedMutations4_3.vcf.gz.
+Removing temporary output file Data/Mutations/sortedMutations4_3.vcf.gz.tbi.
+[Tue Jun 11 17:56:45 2019]
+Finished job 15.
+50 of 53 steps (94%) done
+
+[Tue Jun 11 17:56:45 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutations4_3.fa
+    output: results/simulatedAmplification_Tree4_Allel3_1.fq, results/simulatedAmplification_Tree4_Allel3_2.fq
+    jobid: 4
+    wildcards: treename=4, sample=3
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/8237f946
+[Tue Jun 11 17:56:46 2019]
+Finished job 4.
+51 of 53 steps (96%) done
+
+[Tue Jun 11 17:56:46 2019]
+rule plotBinaryTree:
+    input: Data/Trees/binaryTree4.txt
+    output: Data/Trees/Graph4.pdf
+    jobid: 11
+    wildcards: treename=4
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/d216ab68
+[Tue Jun 11 17:56:47 2019]
+Finished job 11.
+52 of 53 steps (98%) done
+
+[Tue Jun 11 17:56:47 2019]
+rule SingleCellReadSimulator:
+    input: results/simulatedAmplification_Tree4_Allel0_1.fq, results/simulatedAmplification_Tree4_Allel1_1.fq, results/simulatedAmplification_Tree4_Allel2_1.fq, results/simulatedAmplification_Tree4_Allel3_1.fq, results/simulatedAmplification_Tree4_Allel4_1.fq, results/simulatedAmplification_Tree4_Allel5_1.fq, results/simulatedAmplification_Tree4_Allel6_1.fq, results/simulatedAmplification_Tree4_Allel7_1.fq, results/simulatedAmplification_Tree4_Allel8_1.fq, results/simulatedAmplification_Tree4_Allel9_1.fq, results/simulatedAmplification_Tree4_Allel0_2.fq, results/simulatedAmplification_Tree4_Allel1_2.fq, results/simulatedAmplification_Tree4_Allel2_2.fq, results/simulatedAmplification_Tree4_Allel3_2.fq, results/simulatedAmplification_Tree4_Allel4_2.fq, results/simulatedAmplification_Tree4_Allel5_2.fq, results/simulatedAmplification_Tree4_Allel6_2.fq, results/simulatedAmplification_Tree4_Allel7_2.fq, results/simulatedAmplification_Tree4_Allel8_2.fq, results/simulatedAmplification_Tree4_Allel9_2.fq, Data/Trees/Graph4.pdf
+    output: results/SingleCellReadSimulator4.txt
+    jobid: 0
+    wildcards: treename=4
+
+[Tue Jun 11 17:56:47 2019]
+Finished job 0.
+53 of 53 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-06-11T175614.343360.snakemake.log
