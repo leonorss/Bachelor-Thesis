@@ -51,7 +51,7 @@ Run the test.
 ```
 snakemake --use-conda "results/SingleCellReadSimulator_Test.txt"
 ```
-To get rid of the test files quickly use the snakemake rule [cleanAll](/README.md#Running-the-Simulator).
+To get rid of the test files quickly use the snakemake rule [cleanAll](#Running-the-Simulator).
 More information on this in the usage section.
 
 ## Usage
