@@ -198,9 +198,9 @@ for bin in range(0, (len(bins)-1)):
     shellCommand = "art_illumina -na -i " + ("Data/MDASimulation/" + nametemplate) + " -p -l " + str(readLength) + " -ss HS25 -f 3 -m " + str(meanFragmentSize) + " -s " + str(standartDeviationOfFragmentSize) + " -o " + outputfile
     os.system(shellCommand)
 
-    # # the fasta file is only needed for the art_illumina simulation and is deleted to save space
-    # shellCommand = "rm Data/MDASimulation/" + nametemplate
-    # os.system(shellCommand)
+    # the fasta file is only needed for the art_illumina simulation and is deleted to save space
+    shellCommand = "rm Data/MDASimulation/" + nametemplate
+    os.system(shellCommand)
 
     nameForFASTQFiles = "Chromosom " + str(chromosom) + " Allel " + str(snakemake.wildcards.sample)
 
@@ -242,3 +242,6 @@ with open(snakemake.output[0], "w") as out_handle:
 with open(snakemake.output[1], "w") as out_handle:
     for i in range(0, len(resultReads2)):
         out_handle.write("@%s\n%s\n+\n%s\n" % (nameForFASTQFiles, resultReads2[i][1], resultReads2[i][2]))
+
+# the Data/MDASimulation folder is not needed anymore
+os.system("rm -r Data/MDASimulation")

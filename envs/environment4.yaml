@@ -5,6 +5,6 @@ channels:
   - defaults
 dependencies:
   - python=3.4
-  - bcftools
   - numpy
   - biopython
+  - pyvcf

@@ -3,7 +3,7 @@ SAMPLES = range(0, (2*(config["generateBinaryTree"]["numberOfLeaves"])))
 
 rule all:
     input:
-        "results/SingleCellReadSimulator{treename}.txt"
+        "results/SingleCellReadSimulator_{treename}.txt"
 
 rule generateBinaryTree:
     output:
@@ -135,8 +135,8 @@ rule simulateReads:
         "Data/Mutations/InsertedMutations{treename}_{sample}.fa"
 
     output:
-        "results/simulatedAmplification_Tree{treename}_Allel{sample}_1.fq",
-        "results/simulatedAmplification_Tree{treename}_Allel{sample}_2.fq"
+        "results/simulatedAmplificationAndSequencing_{treename}_Allel{sample}_1.fq",
+        "results/simulatedAmplificationAndSequencing_{treename}_Allel{sample}_2.fq"
 
     params:
         config["simulateReads"]["seed"],
@@ -158,12 +158,16 @@ rule simulateReads:
 
 rule SingleCellReadSimulator:
     input:
-        expand("results/simulatedAmplification_Tree{{treename}}_Allel{sample}_1.fq", sample = SAMPLES),
-        expand("results/simulatedAmplification_Tree{{treename}}_Allel{sample}_2.fq", sample = SAMPLES),
+        expand("results/simulatedAmplificationAndSequencing_{{treename}}_Allel{sample}_1.fq", sample = SAMPLES),
+        expand("results/simulatedAmplificationAndSequencing_{{treename}}_Allel{sample}_2.fq", sample = SAMPLES),
         "Data/Trees/Graph{treename}.pdf"
 
     output:
-        "results/SingleCellReadSimulator{treename}.txt"
+        "results/SingleCellReadSimulator_{treename}.txt"
 
     shell:
         "echo 'Simulation ran succesfully.' > {output}"
+
+rule cleanAll:
+    shell:
+        "rm -r Data/Trees Data/Mutations results"

@@ -6,7 +6,7 @@
   },
 
   "generateBinaryTree":{
-    "numberOfLeaves": 5,
+    "numberOfLeaves": 4,
     "seed": 345
   },
 

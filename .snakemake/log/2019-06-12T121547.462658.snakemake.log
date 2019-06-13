@@ -1,0 +1,64 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	1	createGermlineMutations
+	1	createMutations
+	1	generateBinaryTree
+	10	indexMutations
+	10	insertMutations
+	1	plotBinaryTree
+	10	simulateReads
+	10	sortMutations
+	10	zipMutations
+	55
+
+[Wed Jun 12 12:15:48 2019]
+rule generateBinaryTree:
+    output: Data/Trees/binaryTree5.txt
+    jobid: 22
+    wildcards: treename=5
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/72b5c89d
+[Wed Jun 12 12:15:49 2019]
+Finished job 22.
+1 of 55 steps (2%) done
+
+[Wed Jun 12 12:15:49 2019]
+rule plotBinaryTree:
+    input: Data/Trees/binaryTree5.txt
+    output: Data/Trees/Graph5.pdf
+    jobid: 11
+    wildcards: treename=5
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/d216ab68
+[Wed Jun 12 12:15:50 2019]
+Finished job 11.
+2 of 55 steps (4%) done
+
+[Wed Jun 12 12:15:50 2019]
+rule createGermlineMutations:
+    output: Data/Mutations/GermlineMutations5_Allel1.vcf, Data/Mutations/GermlineMutations5_Allel2.vcf
+    jobid: 54
+    wildcards: treename=5
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/579dc3c7
+[Wed Jun 12 12:15:51 2019]
+Error in rule createGermlineMutations:
+    jobid: 54
+    output: Data/Mutations/GermlineMutations5_Allel1.vcf, Data/Mutations/GermlineMutations5_Allel2.vcf
+    conda-env: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/579dc3c7
+
+RuleException:
+CalledProcessError in line 53 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Command 'source activate '/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/579dc3c7'; set -euo pipefail;  /usr/local/opt/python/bin/python3.7 '/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/scripts/tmps36t564e.createGermlineMutations.py'' returned non-zero exit status 1.
+  File "/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile", line 53, in __rule_createGermlineMutations
+  File "/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-06-12T121547.462658.snakemake.log
