@@ -143,7 +143,6 @@ snakemake --use-conda "results/SingleCellReadSimulator_<choosenName>.txt"
 ```
 snakemake -j <N> --use-conda "results/SingleCellReadSimulator_<choosenName>.txt"
 ```
-
   To run with the number of available CPU's:
 ```
 snakemake -j --use-conda "results/SingleCellReadSimulator_<choosenName>.txt"
