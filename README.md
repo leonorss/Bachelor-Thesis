@@ -68,6 +68,8 @@ simulatedAmplificationAndSequencing_<choosenName>_Allel<allelNumber>_<first/seco
 
 * To adapt the used chromosom, add your fasta file and the vcf metadataframe needed for all files being created to the "setReferenceGenomeAndMetaDataFrame" rule:
 
+ NOTE: The contig header in the vcf files must include an ID (contig=<ID=<n>>) and this ID must be equal to the header given in the fasta file.
+
  ```
 "referenceGenome": "path/to/your/referenceGenome.fa"
 "metaDataFrame": "path/to/your/metaDataFrame.vcf"
