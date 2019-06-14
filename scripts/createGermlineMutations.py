@@ -22,7 +22,7 @@ referenceGenomeLength = len(referenceGenome)
 vcfReader_MetaData = vcf.Reader(filename=snakemake.params[4])
 vcfWriter1 = vcf.Writer(open(snakemake.output[0], 'w'), vcfReader_MetaData)
 vcfWriter2 = vcf.Writer(open(snakemake.output[1], 'w'), vcfReader_MetaData)
-chromosomId = int(vcfReader_MetaData.contigs["1"][0])
+chromosomId = int(next(iter(vcfReader_MetaData.contigs)))
 
 # creating specified number of random homozygous mutations: 1=A, 2=C, 3=G, 4=T
 for homozygousMutation in range(0, numberOfHomozygousGermlineMutations):

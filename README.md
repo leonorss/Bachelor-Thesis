@@ -137,12 +137,27 @@ Changing the mean coverage and standart deviation of the bins:
 ```
 snakemake --use-conda "results/SingleCellReadSimulator_<choosenName>.txt"
 ```
+* It is also possible to let snakemake automatically determine which parts of the workflow can be run in parallel.
+
+  To run with up to N cores:
+```
+snakemake -j <N> --use-conda "results/SingleCellReadSimulator_<choosenName>.txt"
+```
+
+  To run with the number of available CPU's:
+```
+snakemake -j --use-conda "results/SingleCellReadSimulator_<choosenName>.txt"
+```
 
 * To clean up all files and folders created by the simulation use:
 ```
 snakemake cleanAll
 ```
 
+For further informations on command line options for the execution with snakemake call:
+```
+snakemake -h
+```
 
 ## Built With
 

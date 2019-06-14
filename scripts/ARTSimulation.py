@@ -41,7 +41,7 @@ MDAamplificationErrorProbability = snakemake.params[8]
 
 # save the name of the choosen Chromosom
 chromosomReader = vcf.Reader(filename=snakemake.params[9])
-chromosom = chromosomReader.contigs["1"][0]
+chromosom = int(next(iter(chromosomReader.contigs)))
 
 # save end positions of read lengths in vector
 bins = [0]

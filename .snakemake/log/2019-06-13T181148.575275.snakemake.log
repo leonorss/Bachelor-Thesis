@@ -1,0 +1,25 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	7	indexMutations
+	7	insertMutations
+	8	simulateReads
+	7	sortMutations
+	7	zipMutations
+	37
+
+[Thu Jun 13 18:11:49 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutationsTest_5.fa
+    output: results/simulatedAmplificationAndSequencing_Test_Allel5_1.fq, results/simulatedAmplificationAndSequencing_Test_Allel5_2.fq
+    jobid: 6
+    wildcards: treename=Test, sample=5
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/68240cd7
+Terminating processes on user request, this might take some time.
+Cancelling snakemake on user request.

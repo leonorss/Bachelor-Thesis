@@ -22,7 +22,7 @@ leaves = snakemake.params[1]
 vcfReader_MetaData = vcf.Reader(filename=snakemake.params[4])
 vcfReader_Allel1 = vcf.Reader(filename=snakemake.input[1])
 vcfReader_Allel2 = vcf.Reader(filename=snakemake.input[2])
-chromosomId = int(vcfReader_MetaData.contigs["1"][0])
+chromosomId = int(next(iter(vcfReader_MetaData.contigs)))
 
 # save created mutations and positions to insert into vcf files later, as well as in which allel they happened
 randomPostions = np.zeros(numberOfMutations)
@@ -240,7 +240,7 @@ for leave in range(0, leaves):
             else:
                 vcf_writer2.write_record(record)
                 vcf_writer2.flush()
-                
+
     # close the writers
     vcf_writer1.close()
     vcf_writer2.close()

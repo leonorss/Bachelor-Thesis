@@ -1,13 +1,13 @@
 {
   "setReferenceGenomeAndMetaDataFrame":{
-    "referenceGenome": "Test/ReferenceGenome.fa",
-    "metaDataFrame": "Test/MetaDataFrame.vcf"
+    "referenceGenome": "Data/TestReferenceData/ReferenceGenomeChromosome_22.fa",
+    "metaDataFrame": "Data/TestReferenceData/MetaDataFrame.vcf"
 
   },
 
   "generateBinaryTree":{
     "numberOfLeaves": 4,
-    "seed": 345
+    "seed": 23
   },
 
   "createGermlineMutations":{
@@ -22,11 +22,11 @@
   },
 
   "simulateReads":{
-    "meanBinSize": 500,
-    "standartDeviationOfBinSize": 100,
+    "meanBinSize": 1000000,
+    "standartDeviationOfBinSize": 1500,
     "seed": 7643,
-    "meanCoverage": 3,
-    "standartDeviationOfCoverage": 2,
+    "meanCoverage": 250,
+    "standartDeviationOfCoverage": 16,
     "readLength": 100,
     "meanFragmentSize": 250,
     "standartDeviationOfFragmentSize": 16,

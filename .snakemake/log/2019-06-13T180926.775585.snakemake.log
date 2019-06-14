@@ -1,0 +1,37 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	SingleCellReadSimulator
+	7	indexMutations
+	7	insertMutations
+	8	simulateReads
+	7	sortMutations
+	7	zipMutations
+	37
+
+[Thu Jun 13 18:09:27 2019]
+rule simulateReads:
+    input: Data/Mutations/InsertedMutationsTest_5.fa
+    output: results/simulatedAmplificationAndSequencing_Test_Allel5_1.fq, results/simulatedAmplificationAndSequencing_Test_Allel5_2.fq
+    jobid: 6
+    wildcards: treename=Test, sample=5
+
+Conda environment defines Python version < 3.5. Using Python of the master process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.5 only.
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/68240cd7
+[Thu Jun 13 18:09:30 2019]
+Error in rule simulateReads:
+    jobid: 6
+    output: results/simulatedAmplificationAndSequencing_Test_Allel5_1.fq, results/simulatedAmplificationAndSequencing_Test_Allel5_2.fq
+    conda-env: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/68240cd7
+
+RuleException:
+CalledProcessError in line 157 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Command 'source activate '/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/68240cd7'; set -euo pipefail;  /usr/local/opt/python/bin/python3.7 '/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/scripts/tmp8_n5s7vb.ARTSimulation.py'' returned non-zero exit status 1.
+  File "/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile", line 157, in __rule_simulateReads
+  File "/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-06-13T180926.775585.snakemake.log
