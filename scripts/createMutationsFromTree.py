@@ -47,8 +47,8 @@ for mutation in range(0, numberOfMutations):
         if newMutation==1:
             mutatedNucleotid = "A"
 
-            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("a" != referenceGenome[insertPlace]):
+            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or it is not sequenced
+            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("a" != referenceGenome[insertPlace]) and ("N" != referenceGenome[insertPlace]):
 
                 # check that we don't mutate the same nucleotid as in we already did in the germline mutations
                 if (allel == 1):
@@ -81,8 +81,8 @@ for mutation in range(0, numberOfMutations):
         elif newMutation==2:
             mutatedNucleotid = "C"
 
-            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("c" != referenceGenome[insertPlace]):
+            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or it is not sequenced
+            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("c" != referenceGenome[insertPlace]) and ("N" != referenceGenome[insertPlace]):
 
                 if (allel == 1):
                     # check that we don't mutate the same nucleotid as in we already did in the germline mutations
@@ -114,8 +114,8 @@ for mutation in range(0, numberOfMutations):
         elif newMutation==3:
             mutatedNucleotid = "G"
 
-            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("g" != referenceGenome[insertPlace]):
+            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or it is not sequenced
+            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("g" != referenceGenome[insertPlace]) and ("N" != referenceGenome[insertPlace]):
 
                 if (allel == 1):
                     # check that we don't mutate the same nucleotid as in we already did in the germline mutations
@@ -147,8 +147,8 @@ for mutation in range(0, numberOfMutations):
         else:
             mutatedNucleotid = "T"
 
-            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("t" != referenceGenome[insertPlace]):
+            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or it is not sequenced
+            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("t" != referenceGenome[insertPlace]) and ("N" != referenceGenome[insertPlace]):
 
                 if (allel == 1):
                     # check that we don't mutate the same nucleotid as in we already did in the germline mutations

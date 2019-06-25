@@ -115,8 +115,8 @@ for bin in range(0, (len(bins)-1)):
                 if newMutation==1:
                     mutatedNucleotid = "A"
 
-                    # making sure the nucleotid is not the same as in the reference genome
-                    if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("a" != choosenReadSeq[insertPlace]):
+                    # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+                    if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("a" != choosenReadSeq[insertPlace]) and ("N" != choosenReadSeq[insertPlace]):
 
                     # inserting the mutations into the copied sequence
                         mutableChoosenReadSeq = (choosenReadSeq).tomutable()
@@ -134,8 +134,8 @@ for bin in range(0, (len(bins)-1)):
                 elif newMutation==2:
                     mutatedNucleotid = "C"
 
-                    # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-                    if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("c" != choosenReadSeq[insertPlace]):
+                    # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize  or not sequenced
+                    if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("c" != choosenReadSeq[insertPlace]) and ("N" != choosenReadSeq[insertPlace]):
 
                     # inserting the mutations into the copied sequence
                         mutableChoosenReadSeq = (choosenReadSeq).tomutable()
@@ -152,8 +152,8 @@ for bin in range(0, (len(bins)-1)):
                 elif newMutation==3:
                     mutatedNucleotid = "G"
 
-                    # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-                    if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("g" != choosenReadSeq[insertPlace]):
+                    # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+                    if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("g" != choosenReadSeq[insertPlace]) and ("N" != choosenReadSeq[insertPlace]):
 
                     # inserting the mutations into the copied sequence
                         mutableChoosenReadSeq = (choosenReadSeq).tomutable()
@@ -169,8 +169,8 @@ for bin in range(0, (len(bins)-1)):
                 else:
                     mutatedNucleotid = "T"
 
-                    # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-                    if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("t" != choosenReadSeq[insertPlace]):
+                    # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+                    if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("t" != choosenReadSeq[insertPlace]) and ("N" != choosenReadSeq[insertPlace]):
 
                     # inserting the mutations into the copied sequence
                         mutableChoosenReadSeq = (choosenReadSeq).tomutable()

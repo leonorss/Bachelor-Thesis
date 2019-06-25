@@ -39,8 +39,8 @@ for homozygousMutation in range(0, numberOfHomozygousGermlineMutations):
         if newMutation==1:
             mutatedNucleotid = "A"
 
-            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("a" != referenceGenome[insertPlace]):
+            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("a" != referenceGenome[insertPlace]) and ("N" != referenceGenome[insertPlace]):
                 if homozygousMutation != 0:
                     vcfReader1 = vcf.Reader(filename=snakemake.output[0])
                     for existingRecord in vcfReader1:
@@ -63,8 +63,8 @@ for homozygousMutation in range(0, numberOfHomozygousGermlineMutations):
         elif newMutation==2:
             mutatedNucleotid = "C"
 
-            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("c" != referenceGenome[insertPlace]):
+            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("c" != referenceGenome[insertPlace]) and ("N" != referenceGenome[insertPlace]):
                 if homozygousMutation != 0:
                     vcfReader1 = vcf.Reader(filename=snakemake.output[0])
                     for existingRecord in vcfReader1:
@@ -89,8 +89,8 @@ for homozygousMutation in range(0, numberOfHomozygousGermlineMutations):
         elif newMutation==3:
             mutatedNucleotid = "G"
 
-            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("g" != referenceGenome[insertPlace]):
+            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("g" != referenceGenome[insertPlace]) and ("N" != referenceGenome[insertPlace]):
                 if homozygousMutation != 0:
                     vcfReader1 = vcf.Reader(filename=snakemake.output[0])
                     for existingRecord in vcfReader1:
@@ -114,8 +114,8 @@ for homozygousMutation in range(0, numberOfHomozygousGermlineMutations):
         else:
             mutatedNucleotid = "T"
 
-            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("t" != referenceGenome[insertPlace]):
+            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("t" != referenceGenome[insertPlace]) and ("N" != referenceGenome[insertPlace]):
                 if homozygousMutation != 0:
                     vcfReader1 = vcf.Reader(filename=snakemake.output[0])
                     for existingRecord in vcfReader1:
@@ -155,8 +155,8 @@ for heterozygousMutation in range(0, numberOfHeterozygousGermlineMutations):
         if newMutation==1:
             mutatedNucleotid = "A"
 
-            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("a" != referenceGenome[insertPlace]):
+            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("a" != referenceGenome[insertPlace]) and ("N" != referenceGenome[insertPlace]):
                 record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
                             REF=vcf.model._Substitution(referenceGenome[insertPlace]),
                             ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
@@ -188,8 +188,8 @@ for heterozygousMutation in range(0, numberOfHeterozygousGermlineMutations):
         elif newMutation==2:
             mutatedNucleotid = "C"
 
-            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("c" != referenceGenome[insertPlace]):
+            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("c" != referenceGenome[insertPlace]) and ("N" != referenceGenome[insertPlace]):
                 record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
                             REF=vcf.model._Substitution(referenceGenome[insertPlace]),
                             ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
@@ -221,8 +221,8 @@ for heterozygousMutation in range(0, numberOfHeterozygousGermlineMutations):
         elif newMutation==3:
             mutatedNucleotid = "G"
 
-            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("g" != referenceGenome[insertPlace]):
+            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("g" != referenceGenome[insertPlace]) and ("N" != referenceGenome[insertPlace]):
                 record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
                             REF=vcf.model._Substitution(referenceGenome[insertPlace]),
                             ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
@@ -254,8 +254,8 @@ for heterozygousMutation in range(0, numberOfHeterozygousGermlineMutations):
         else:
             mutatedNucleotid = "T"
 
-            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize
-            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("t" != referenceGenome[insertPlace]):
+            # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+            if (mutatedNucleotid != referenceGenome[insertPlace]) and ("t" != referenceGenome[insertPlace]) and ("N" != referenceGenome[insertPlace]):
                 record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
                             REF=vcf.model._Substitution(referenceGenome[insertPlace]),
                             ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},

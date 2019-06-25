@@ -1,0 +1,25 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	cleanAll
+	1
+
+[Fri Jun 14 15:27:33 2019]
+rule cleanAll:
+    jobid: 0
+
+[Fri Jun 14 15:27:34 2019]
+Error in rule cleanAll:
+    jobid: 0
+
+RuleException:
+CalledProcessError in line 194 of /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile:
+Command 'set -euo pipefail;  rm -r Data/Trees Data/Mutations results' returned non-zero exit status 1.
+  File "/Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/Snakefile", line 194, in __rule_cleanAll
+  File "/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-06-14T152733.877189.snakemake.log

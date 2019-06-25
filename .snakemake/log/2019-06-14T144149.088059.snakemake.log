@@ -1,0 +1,15 @@
+Building DAG of jobs...
+Creating conda environment envs/environment1.yaml...
+Downloading remote packages.
+CreateCondaEnvironmentException:
+Could not create conda environment from /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/envs/environment1.yaml:
+Collecting package metadata: ...working... done
+Solving environment: ...working... failed
+
+UnsatisfiableError: The following specifications were found to be in conflict:
+  - psutil=5.6 -> python[version='>=3.6,<3.7.0a0'] -> openssl[version='>=1.1.1a,<1.1.2a']
+  - psutil=5.6 -> python[version='>=3.6,<3.7.0a0'] -> tk[version='>=8.6.9,<8.7.0a0']
+  - python=3.4
+Use "conda search <package> --info" to see the dependencies for each package.
+
+
