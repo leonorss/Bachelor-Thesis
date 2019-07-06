@@ -86,7 +86,7 @@ if (N != 1):
 
 else:
     testTree = np.ones((3, 1))
-    testTree = tree * (-1)
+    testTree = testTree * (-1)
     testTree[2][0] = 0
 
 # saving tree to the specified output file
