@@ -88,6 +88,7 @@ else:
     testTree = np.ones((3, 1))
     testTree = testTree * (-1)
     testTree[2][0] = 0
+    testTree.astype(int)
 
 # saving tree to the specified output file
 np.savetxt(sys.argv[2], testTree, fmt='%i')
