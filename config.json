@@ -25,12 +25,14 @@
     "meanBinSize": 1000000,
     "standartDeviationOfBinSize": 1500,
     "seed": 7643,
-    "meanCoverage": 3,
-    "standartDeviationOfCoverage": 2,
+    "meanMDACoverage": 3,
+    "standartDeviationOfMDACoverage": 2,
     "readLength": 100,
     "meanFragmentSize": 250,
     "standartDeviationOfFragmentSize": 16,
-    "MDAamplificationErrorProbability": 0.0000001
+    "MDAamplificationErrorProbability": 0.0000001,
+    "ARTcoverage": 1,
+    "ARTDropReadProbability": 0.05
   }
 
 }

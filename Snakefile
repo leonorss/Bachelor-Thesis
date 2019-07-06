@@ -119,7 +119,7 @@ rule insertMutations:
         "Data/Mutations/sortedMutations{treename}_{sample}.vcf.gz.tbi"
 
     output:
-        "Data/Mutations/InsertedMutations{treename}_{sample}.fa"
+        temp("Data/Mutations/InsertedMutations{treename}_{sample}.fa")
 
     params:
         config["setReferenceGenomeAndMetaDataFrame"]["referenceGenome"]
@@ -142,13 +142,15 @@ rule simulateReads:
         config["simulateReads"]["seed"],
         config["simulateReads"]["meanBinSize"],
         config["simulateReads"]["standartDeviationOfBinSize"],
-        config["simulateReads"]["meanCoverage"],
-        config["simulateReads"]["standartDeviationOfCoverage"],
+        config["simulateReads"]["meanMDACoverage"],
+        config["simulateReads"]["standartDeviationOfMDACoverage"],
         config["simulateReads"]["readLength"],
         config["simulateReads"]["meanFragmentSize"],
         config["simulateReads"]["standartDeviationOfFragmentSize"],
         config["simulateReads"]["MDAamplificationErrorProbability"],
-        config["setReferenceGenomeAndMetaDataFrame"]["metaDataFrame"]
+        config["setReferenceGenomeAndMetaDataFrame"]["metaDataFrame"],
+        config["simulateReads"]["ARTcoverage"],
+        config["simulateReads"]["ARTDropReadProbability"]
 
     conda:
         "envs/environment6.yaml"
