@@ -15,7 +15,7 @@ referenceGenome = SeqIO.read(snakemake.params[3], "fasta")
 referenceGenomeLength = len(referenceGenome)
 
 # read in tree and number of leaves
-tree = np.loadtxt(fname = snakemake.input[0])
+tree = np.loadtxt(fname = snakemake.input[0], ndmin = 2)
 leaves = snakemake.params[1]
 
 # read in metadata for the vcf files
