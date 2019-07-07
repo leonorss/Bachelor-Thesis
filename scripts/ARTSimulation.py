@@ -211,9 +211,13 @@ for bin in range(0, (len(bins)-1)):
 
         nameForFASTQFiles = "Chromosom " + str(chromosom) + " Allel " + str(snakemake.wildcards.sample)
 
+        numberOfReads = 0
+        for rec in SeqIO.parse(outputfile + "1.fq", "fastq"):
+            numberOfReads += 1
+
         # choose with if a read gets lost during sequencing with some probability ARTDropReadProbability
         # 0 represents a read not being dropped and 1 a read being dropped
-        droppedReads = random.choices(population = [0, 1], weights = [(1-ARTDropReadProbability), ARTDropReadProbability], k = readCoverage)
+        droppedReads = random.choices(population = [0, 1], weights = [(1-ARTDropReadProbability), ARTDropReadProbability], k = numberOfReads)
 
         with open(outputfile + "1.fq") as in_handle:
             i = 0
