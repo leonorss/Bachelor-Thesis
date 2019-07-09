@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 # load the tree in matrix format build by generateBinaryTree.py
-tree = np.loadtxt(fname = snakemake.input[0])
+tree = np.loadtxt(fname = snakemake.input[0], ndmin = 2)
 
 # start a new graph
 dot = Digraph(comment='Tree')
