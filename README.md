@@ -95,7 +95,7 @@ simulatedAmplificationAndSequencing_<choosenName>_Allel<allelNumber>_<first/seco
 ```
 
 * To change the parameters for the MDA amplification and illumina sequencing, the rule "simulateReads" can be used.
- The MDA amplification is simulated by splitting the chromosomes into different size pieces (bins) with different coverages. With some propability a mutation occurs during this MDA amplification and gets copied to a fraction of the coverage.
+ The MDA amplification is simulated by splitting the chromosomes into different size pieces (bins) with different coverages. With some propability a mutation occurs during this MDA amplification and gets copied to a fraction of the coverage. Then the copies are sequenced and some of the reads get dropped.
 
  NOTE: the example parameters given below, should be a sensible start for the simulation
 
@@ -122,9 +122,17 @@ Changing the mean coverage and standart deviation of the bins:
   "meanFragmentSize": 250
   "standartDeviationOfFragmentSize": 16
  ```
- Changing the probability with which an MDA amplification error occurs.
+ Changing the probability with which an MDA amplification error occurs:
   ```
   "MDAamplificationErrorProbability": 0.0000001
+ ```
+ Changing the ART Illumina sequencing coverage:
+ ```
+ "ARTcoverage": 1
+ ```
+ Changing the probability with which a read is dropped during sequencing:
+ ```
+ "ARTDropReadProbability": 0.05
  ```
 
 * For every rule including random number drawing there exists a seed for reproducibilaty, which can be changed to get different outcomes:
