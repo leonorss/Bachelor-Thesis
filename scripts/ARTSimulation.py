@@ -252,6 +252,3 @@ with open(snakemake.output[0], "w") as out_handle:
 with open(snakemake.output[1], "w") as out_handle:
     for i in range(0, len(ArtIlluminaRecords2)):
         out_handle.write("@%s\n%s\n+\n%s\n" % (nameForFASTQFiles, ArtIlluminaRecords2[i][1], ArtIlluminaRecords2[i][2]))
-
-# the Data/MDASimulation folder is not needed anymore
-os.system("rm -r Data/MDASimulation")

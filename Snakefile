@@ -168,7 +168,10 @@ rule SingleCellReadSimulator:
         "results/SingleCellReadSimulator_{treename}.txt"
 
     shell:
-        "echo 'Simulation ran succesfully.' > {output}"
+        """
+        echo 'Simulation ran succesfully.' > {output}
+        rm -r Data/MDASimulation
+        """
 
 rule cleanAll:
     shell:

@@ -7,7 +7,7 @@
 
   "generateBinaryTree":{
     "numberOfLeaves": 4,
-    "seed": 23
+    "seed": 7
   },
 
   "createGermlineMutations":{

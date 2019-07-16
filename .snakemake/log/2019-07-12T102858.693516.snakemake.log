@@ -1,0 +1,39 @@
+Building DAG of jobs...
+Creating conda environment envs/environment2.yaml...
+Downloading remote packages.
+Environment for envs/environment2.yaml created (location: .snakemake/conda/369ed9c3)
+Creating conda environment envs/environment1.yaml...
+Downloading remote packages.
+Environment for envs/environment1.yaml created (location: .snakemake/conda/83e26c07)
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	generateBinaryTree
+	1	plotBinaryTree
+	2
+
+[Fri Jul 12 10:31:05 2019]
+rule generateBinaryTree:
+    output: Data/Trees/binaryTreeThesisExample.txt
+    jobid: 1
+    wildcards: treename=ThesisExample
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/83e26c07
+[Fri Jul 12 10:31:06 2019]
+Finished job 1.
+1 of 2 steps (50%) done
+
+[Fri Jul 12 10:31:06 2019]
+rule plotBinaryTree:
+    input: Data/Trees/binaryTreeThesisExample.txt
+    output: Data/Trees/GraphThesisExample.pdf
+    jobid: 0
+    wildcards: treename=ThesisExample
+
+Activating conda environment: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/conda/369ed9c3
+[Fri Jul 12 10:31:07 2019]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: /Users/leonorschubert/Desktop/Aramis/ETH/Bachelor Thesis/Code/.snakemake/log/2019-07-12T102858.693516.snakemake.log
