@@ -27,6 +27,7 @@
     "seed": 7643,
     "meanMDACoverage": 3,
     "standartDeviationOfMDACoverage": 2,
+    "zeroInflatationProbability": 0.5,
     "readLength": 100,
     "meanFragmentSize": 250,
     "standartDeviationOfFragmentSize": 16,

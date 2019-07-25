@@ -10,6 +10,14 @@ import vcf
 os.system("mkdir results")
 os.system("mkdir Data/MDASimulation")
 
+# create one vcf file to save the MDA errors
+vcfName = "Data/MDASimulation/MDAerrors_" + snakemake.wildcards.treename + "_Allel" + snakemake.wildcards.sample + ".vcf"
+vcfReader_MetaData = vcf.Reader(filename= snakemake.params[13])
+vcfWriter = vcf.Writer(open(vcfName, 'w'), vcfReader_MetaData)
+chromosomId = int(next(iter(vcfReader_MetaData.contigs)))
+# read in reference Genome to get the reference nucleotid
+referenceGenome = SeqIO.read(snakemake.params[14], "fasta")
+
 # read in seed from config file for reproducibilaty
 configSeed = snakemake.params[0] + int(snakemake.wildcards.sample)
 random.seed(configSeed)
@@ -27,6 +35,7 @@ genomeLength = len(genome)
 meanCoverage = snakemake.params[3]
 standardDeviationOfCoverage = snakemake.params[4]
 varianceOfCoverage = standardDeviationOfCoverage * standardDeviationOfCoverage
+zeroInflatationProb = snakemake.params[12]
 
 # read in read length from config file
 readLength = snakemake.params[5]
@@ -85,7 +94,13 @@ for bin in range(0, (len(bins)-1)):
     # generating a random read coverage with a negative binomial distribution and parameters p and r
     rReadCoverage = (meanCoverage*meanCoverage) / (varianceOfCoverage - meanCoverage)
     pReadCoverage = (varianceOfCoverage - meanCoverage) / varianceOfCoverage
-    readCoverage = np.random.negative_binomial(rReadCoverage, (1 - pReadCoverage))
+
+    whichDistribution = random.choices(population = [0, 1], weights = [zeroInflatationProb, (1-zeroInflatationProb)], k = 1)
+
+    if whichDistribution == 0:
+        readCoverage = 0
+    else:
+        readCoverage = np.random.negative_binomial(rReadCoverage, (1 - pReadCoverage))
 
     if (readCoverage != 0):
 
@@ -123,7 +138,7 @@ for bin in range(0, (len(bins)-1)):
                     if newMutation==1:
                         mutatedNucleotid = "A"
 
-                        # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+                        # making sure the nucleotid is not the same as in the given sequence or can not be sequenced
                         if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("a" != choosenReadSeq[insertPlace]) and ("N" != choosenReadSeq[insertPlace]):
 
                             # inserting the mutations into the copied sequence
@@ -132,6 +147,13 @@ for bin in range(0, (len(bins)-1)):
                             newSeq = mutableChoosenReadSeq.toseq()
 
                             newRecord = SeqRecord(newSeq, id=idName)
+
+                            record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
+                                        REF=vcf.model._Substitution(referenceGenome[insertPlace]),
+                                        ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
+                                        FORMAT=".", sample_indexes=[], samples=None)
+                            vcfWriter.write_record(record)
+                            vcfWriter.flush()
 
                             inserted = 1
 
@@ -142,7 +164,7 @@ for bin in range(0, (len(bins)-1)):
                     elif newMutation==2:
                         mutatedNucleotid = "C"
 
-                        # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize  or not sequenced
+                        # making sure the nucleotid is not the same as in the given sequence or can not be sequenced
                         if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("c" != choosenReadSeq[insertPlace]) and ("N" != choosenReadSeq[insertPlace]):
 
                             # inserting the mutations into the copied sequence
@@ -152,6 +174,13 @@ for bin in range(0, (len(bins)-1)):
 
                             newRecord = SeqRecord(newSeq, id=idName)
 
+                            record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
+                                        REF=vcf.model._Substitution(referenceGenome[insertPlace]),
+                                        ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
+                                        FORMAT=".", sample_indexes=[], samples=None)
+                            vcfWriter.write_record(record)
+                            vcfWriter.flush()
+
                             inserted = 1
 
 
@@ -160,7 +189,7 @@ for bin in range(0, (len(bins)-1)):
                     elif newMutation==3:
                         mutatedNucleotid = "G"
 
-                        # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+                        # making sure the nucleotid is not the same as in the given sequence or can not be sequenced
                         if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("g" != choosenReadSeq[insertPlace]) and ("N" != choosenReadSeq[insertPlace]):
 
                             # inserting the mutations into the copied sequence
@@ -170,6 +199,13 @@ for bin in range(0, (len(bins)-1)):
 
                             newRecord = SeqRecord(newSeq, id=idName)
 
+                            record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
+                                        REF=vcf.model._Substitution(referenceGenome[insertPlace]),
+                                        ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
+                                        FORMAT=".", sample_indexes=[], samples=None)
+                            vcfWriter.write_record(record)
+                            vcfWriter.flush()
+
                             inserted = 1
 
 
@@ -177,7 +213,7 @@ for bin in range(0, (len(bins)-1)):
                     else:
                         mutatedNucleotid = "T"
 
-                        # making sure the nucleotid is not the same as in the reference genome or that we mutated the same nucleotide twize or not sequenced
+                        # making sure the nucleotid is not the same as in the given sequence or can not be sequenced
                         if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("t" != choosenReadSeq[insertPlace]) and ("N" != choosenReadSeq[insertPlace]):
 
                             # inserting the mutations into the copied sequence
@@ -186,6 +222,13 @@ for bin in range(0, (len(bins)-1)):
                             newSeq = mutableChoosenReadSeq.toseq()
 
                             newRecord = SeqRecord(newSeq, id=idName)
+
+                            record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
+                                        REF=vcf.model._Substitution(referenceGenome[insertPlace]),
+                                        ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
+                                        FORMAT=".", sample_indexes=[], samples=None)
+                            vcfWriter.write_record(record)
+                            vcfWriter.flush()
 
                             inserted = 1
 

@@ -150,7 +150,10 @@ rule simulateReads:
         config["simulateReads"]["MDAamplificationErrorProbability"],
         config["setReferenceGenomeAndMetaDataFrame"]["metaDataFrame"],
         config["simulateReads"]["ARTcoverage"],
-        config["simulateReads"]["ARTDropReadProbability"]
+        config["simulateReads"]["ARTDropReadProbability"],
+        config["simulateReads"]["zeroInflatationProbability"],
+        config["setReferenceGenomeAndMetaDataFrame"]["metaDataFrame"],
+        config["setReferenceGenomeAndMetaDataFrame"]["referenceGenome"]
 
     conda:
         "envs/environment6.yaml"
@@ -168,11 +171,8 @@ rule SingleCellReadSimulator:
         "results/SingleCellReadSimulator_{treename}.txt"
 
     shell:
-        """
-        echo 'Simulation ran succesfully.' > {output}
-        rm -r Data/MDASimulation
-        """
+        "echo 'Simulation ran succesfully.' > {output}"
 
 rule cleanAll:
     shell:
-        "rm -r Data/Trees Data/Mutations results"
+        "rm -r Data/Trees Data/Mutations Data/MDASimulation results"
