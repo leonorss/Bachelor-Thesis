@@ -5,6 +5,7 @@ import os
 from Bio.SeqRecord import SeqRecord
 from Bio.SeqIO.QualityIO import FastqGeneralIterator
 import vcf
+import time
 
 # create necessary folders
 os.system("mkdir results")
@@ -15,6 +16,7 @@ vcfName = "Data/MDASimulation/MDAerrors_" + snakemake.wildcards.treename + "_All
 vcfReader_MetaData = vcf.Reader(filename= snakemake.params[13])
 vcfWriter = vcf.Writer(open(vcfName, 'w'), vcfReader_MetaData)
 chromosomId = int(next(iter(vcfReader_MetaData.contigs)))
+
 # read in reference Genome to get the reference nucleotid
 referenceGenome = SeqIO.read(snakemake.params[14], "fasta")
 
@@ -148,8 +150,8 @@ for bin in range(0, (len(bins)-1)):
 
                             newRecord = SeqRecord(newSeq, id=idName)
 
-                            record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
-                                        REF=vcf.model._Substitution(referenceGenome[insertPlace]),
+                            record = vcf.model._Record(CHROM=chromosomId, POS=(bins[bin]+insertPlace+1), ID='.',
+                                        REF=vcf.model._Substitution(referenceGenome[bins[bin]+insertPlace]),
                                         ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
                                         FORMAT=".", sample_indexes=[], samples=None)
                             vcfWriter.write_record(record)
@@ -174,8 +176,8 @@ for bin in range(0, (len(bins)-1)):
 
                             newRecord = SeqRecord(newSeq, id=idName)
 
-                            record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
-                                        REF=vcf.model._Substitution(referenceGenome[insertPlace]),
+                            record = vcf.model._Record(CHROM=chromosomId, POS=(bins[bin]+insertPlace+1), ID='.',
+                                        REF=vcf.model._Substitution(referenceGenome[bins[bin]+insertPlace]),
                                         ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
                                         FORMAT=".", sample_indexes=[], samples=None)
                             vcfWriter.write_record(record)
@@ -199,8 +201,8 @@ for bin in range(0, (len(bins)-1)):
 
                             newRecord = SeqRecord(newSeq, id=idName)
 
-                            record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
-                                        REF=vcf.model._Substitution(referenceGenome[insertPlace]),
+                            record = vcf.model._Record(CHROM=chromosomId, POS=(bins[bin]+insertPlace+1), ID='.',
+                                        REF=vcf.model._Substitution(referenceGenome[bins[bin]+insertPlace]),
                                         ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
                                         FORMAT=".", sample_indexes=[], samples=None)
                             vcfWriter.write_record(record)
@@ -223,8 +225,8 @@ for bin in range(0, (len(bins)-1)):
 
                             newRecord = SeqRecord(newSeq, id=idName)
 
-                            record = vcf.model._Record(CHROM=chromosomId, POS=(insertPlace+1), ID='.',
-                                        REF=vcf.model._Substitution(referenceGenome[insertPlace]),
+                            record = vcf.model._Record(CHROM=chromosomId, POS=(bins[bin]+insertPlace+1), ID='.',
+                                        REF=vcf.model._Substitution(referenceGenome[bins[bin]+insertPlace]),
                                         ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
                                         FORMAT=".", sample_indexes=[], samples=None)
                             vcfWriter.write_record(record)
@@ -247,6 +249,14 @@ for bin in range(0, (len(bins)-1)):
         outputfile = "results/ARTRecord_Tree" + str(snakemake.wildcards.treename) + "_Sample" + str(snakemake.wildcards.sample) + "_Bin" + str(bin) + "."
         shellCommand = "art_illumina -na -i " + ("Data/MDASimulation/" + nametemplate) + " -p -l " + str(readLength) + " -ss HS25 -f " + str(ARTcoverage) + " -m " + str(meanFragmentSize) + " -s " + str(standartDeviationOfFragmentSize) + " -o " + outputfile
         os.system(shellCommand)
+
+        # make sure ART is finished before continuing
+        time_to_wait = 1000
+        time_counter = 0
+        while not os.path.exists(outputfile + "1.fq"):
+            time.sleep(1)
+            time_counter += 1
+            if time_counter > time_to_wait:break
 
         # the fasta file is only needed for the art_illumina simulation and is deleted to save space
         shellCommand = "rm Data/MDASimulation/" + nametemplate
@@ -295,3 +305,6 @@ with open(snakemake.output[0], "w") as out_handle:
 with open(snakemake.output[1], "w") as out_handle:
     for i in range(0, len(ArtIlluminaRecords2)):
         out_handle.write("@%s\n%s\n+\n%s\n" % (nameForFASTQFiles, ArtIlluminaRecords2[i][1], ArtIlluminaRecords2[i][2]))
+
+# close the writer
+vcfWriter.close()
