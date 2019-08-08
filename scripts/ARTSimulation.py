@@ -67,16 +67,20 @@ bins = [0]
 # randomly generate bin lengths with given parameters and save the end positions with respect to the whole genome into the bins vector
 i = 0
 position = 0
+rBinSize = (meanBinSizeLength*meanBinSizeLength) / (varianceOfBinSize - meanBinSizeLength)
+pBinSize = (varianceOfBinSize - meanBinSizeLength) / varianceOfBinSize
 while (position < (genomeLength - 2*meanBinSizeLength)):
 
+    notZero = 1
     # generating a random bin size with a negative binomial distribution and parameters p and r
-    rBinSize = (meanBinSizeLength*meanBinSizeLength) / (varianceOfBinSize - meanBinSizeLength)
-    pBinSize = (varianceOfBinSize - meanBinSizeLength) / varianceOfBinSize
-    length = np.random.negative_binomial(rBinSize, (1 - pBinSize))
+    while(notZero == 1)
+        length = np.random.negative_binomial(rBinSize, (1 - pBinSize))
 
-    position = length + bins[i]
-    bins.append(position)
-    i = i + 1
+        if (length != 0):
+            position = length + bins[i]
+            bins.append(position)
+            i = i + 1
+            notZero = 0
 
 # to make sure we don't have a very small bin at the end because of standart deviation, we calculate the last 2 bin sizes,
 # by stopping the above loop at (genomeLength - 2*meanBinSize) and dividing the rest genome by 2
