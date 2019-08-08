@@ -73,7 +73,7 @@ while (position < (genomeLength - 2*meanBinSizeLength)):
 
     notZero = 1
     # generating a random bin size with a negative binomial distribution and parameters p and r
-    while(notZero == 1)
+    while(notZero == 1):
         length = np.random.negative_binomial(rBinSize, (1 - pBinSize))
 
         if (length != 0):
