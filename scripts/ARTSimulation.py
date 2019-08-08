@@ -100,7 +100,7 @@ for bin in range(0, (len(bins)-1)):
 
     whichDistribution = random.choices(population = [0, 1], weights = [zeroInflatationProb, (1-zeroInflatationProb)], k = 1)
 
-    if whichDistribution == 0:
+    if whichDistribution[0] == 0:
         readCoverage = 0
     else:
         readCoverage = np.random.negative_binomial(rReadCoverage, (1 - pReadCoverage))
@@ -128,7 +128,7 @@ for bin in range(0, (len(bins)-1)):
             idName = str(bin) + "." + str(amplification)
 
             # if there's a MDA amlification error ocurred, we create it and introduce it into the copy of the choosen sequence
-            if (amplificationError == 1):
+            if (amplificationError[0] == 1):
                 inserted = 0
 
                 # checking that we didn't create a mutation that didn't actually change the reference genome
@@ -300,8 +300,8 @@ for mutation in range(0, len(mutatedNucleotids)):
     position = int(randomPostions[mutation])
     insertMutation = mutatedNucleotids[mutation]
     record = vcf.model._Record(CHROM=chromosomId, POS=(position), ID='.',
-                REF=vcf.model._Substitution(referenceGenome[position]),
-                ALT=[vcf.model._Substitution(insertMutation-1)], QUAL='.', FILTER='PASS', INFO={},
+                REF=vcf.model._Substitution(referenceGenome[position-1]),
+                ALT=[vcf.model._Substitution(insertMutation)], QUAL='.', FILTER='PASS', INFO={},
                 FORMAT=".", sample_indexes=[], samples=None)
     vcfWriter.write_record(record)
     vcfWriter.flush()
