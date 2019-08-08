@@ -11,11 +11,12 @@ import time
 os.system("mkdir results")
 os.system("mkdir Data/MDASimulation")
 
-# create one vcf file to save the MDA errors
+# create name for the vcf file
 vcfName = "Data/MDASimulation/MDAerrors_" + snakemake.wildcards.treename + "_Allel" + snakemake.wildcards.sample + ".vcf"
-vcfReader_MetaData = vcf.Reader(filename= snakemake.params[13])
-vcfWriter = vcf.Writer(open(vcfName, 'w'), vcfReader_MetaData)
-chromosomId = int(next(iter(vcfReader_MetaData.contigs)))
+
+# save created mutations and positions to insert into vcf file later
+randomPostions = []
+mutatedNucleotids = []
 
 # read in reference Genome to get the reference nucleotid
 referenceGenome = SeqIO.read(snakemake.params[14], "fasta")
@@ -150,12 +151,8 @@ for bin in range(0, (len(bins)-1)):
 
                             newRecord = SeqRecord(newSeq, id=idName)
 
-                            record = vcf.model._Record(CHROM=chromosomId, POS=(bins[bin]+insertPlace+1), ID='.',
-                                        REF=vcf.model._Substitution(referenceGenome[bins[bin]+insertPlace]),
-                                        ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
-                                        FORMAT=".", sample_indexes=[], samples=None)
-                            vcfWriter.write_record(record)
-                            vcfWriter.flush()
+                            randomPostions.append(bins[bin]+insertPlace+1)
+                            mutatedNucleotids.append(mutatedNucleotid)
 
                             inserted = 1
 
@@ -176,12 +173,8 @@ for bin in range(0, (len(bins)-1)):
 
                             newRecord = SeqRecord(newSeq, id=idName)
 
-                            record = vcf.model._Record(CHROM=chromosomId, POS=(bins[bin]+insertPlace+1), ID='.',
-                                        REF=vcf.model._Substitution(referenceGenome[bins[bin]+insertPlace]),
-                                        ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
-                                        FORMAT=".", sample_indexes=[], samples=None)
-                            vcfWriter.write_record(record)
-                            vcfWriter.flush()
+                            randomPostions.append(bins[bin]+insertPlace+1)
+                            mutatedNucleotids.append(mutatedNucleotid)
 
                             inserted = 1
 
@@ -201,12 +194,8 @@ for bin in range(0, (len(bins)-1)):
 
                             newRecord = SeqRecord(newSeq, id=idName)
 
-                            record = vcf.model._Record(CHROM=chromosomId, POS=(bins[bin]+insertPlace+1), ID='.',
-                                        REF=vcf.model._Substitution(referenceGenome[bins[bin]+insertPlace]),
-                                        ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
-                                        FORMAT=".", sample_indexes=[], samples=None)
-                            vcfWriter.write_record(record)
-                            vcfWriter.flush()
+                            randomPostions.append(bins[bin]+insertPlace+1)
+                            mutatedNucleotids.append(mutatedNucleotid)
 
                             inserted = 1
 
@@ -225,12 +214,8 @@ for bin in range(0, (len(bins)-1)):
 
                             newRecord = SeqRecord(newSeq, id=idName)
 
-                            record = vcf.model._Record(CHROM=chromosomId, POS=(bins[bin]+insertPlace+1), ID='.',
-                                        REF=vcf.model._Substitution(referenceGenome[bins[bin]+insertPlace]),
-                                        ALT=[vcf.model._Substitution(mutatedNucleotid)], QUAL='.', FILTER='PASS', INFO={},
-                                        FORMAT=".", sample_indexes=[], samples=None)
-                            vcfWriter.write_record(record)
-                            vcfWriter.flush()
+                            randomPostions.append(bins[bin]+insertPlace+1)
+                            mutatedNucleotids.append(mutatedNucleotid)
 
                             inserted = 1
 
@@ -305,6 +290,21 @@ with open(snakemake.output[0], "w") as out_handle:
 with open(snakemake.output[1], "w") as out_handle:
     for i in range(0, len(ArtIlluminaRecords2)):
         out_handle.write("@%s\n%s\n+\n%s\n" % (nameForFASTQFiles, ArtIlluminaRecords2[i][1], ArtIlluminaRecords2[i][2]))
+
+vcfReader_MetaData = vcf.Reader(filename= snakemake.params[13])
+vcfWriter = vcf.Writer(open(vcfName, 'w'), vcfReader_MetaData)
+chromosomId = int(next(iter(vcfReader_MetaData.contigs)))
+
+for mutation in range(0, len(mutatedNucleotids)):
+
+    position = int(randomPostions[mutation])
+    insertMutation = mutatedNucleotids[mutation]
+    record = vcf.model._Record(CHROM=chromosomId, POS=(position), ID='.',
+                REF=vcf.model._Substitution(referenceGenome[position]),
+                ALT=[vcf.model._Substitution(insertMutation-1)], QUAL='.', FILTER='PASS', INFO={},
+                FORMAT=".", sample_indexes=[], samples=None)
+    vcfWriter.write_record(record)
+    vcfWriter.flush()
 
 # close the writer
 vcfWriter.close()
