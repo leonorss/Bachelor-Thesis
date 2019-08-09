@@ -147,7 +147,7 @@ for bin in range(0, (len(bins)-1)):
                         mutatedNucleotid = "A"
 
                         # making sure the nucleotid is not the same as in the given sequence or can not be sequenced
-                        if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("a" != choosenReadSeq[insertPlace])):
+                        if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("a" != choosenReadSeq[insertPlace]):
 
                             # inserting the mutations into the copied sequence
                             mutableChoosenReadSeq = (choosenReadSeq).tomutable()
@@ -169,7 +169,7 @@ for bin in range(0, (len(bins)-1)):
                         mutatedNucleotid = "C"
 
                         # making sure the nucleotid is not the same as in the given sequence or can not be sequenced
-                        if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("c" != choosenReadSeq[insertPlace])):
+                        if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("c" != choosenReadSeq[insertPlace]):
 
                             # inserting the mutations into the copied sequence
                             mutableChoosenReadSeq = (choosenReadSeq).tomutable()
@@ -190,7 +190,7 @@ for bin in range(0, (len(bins)-1)):
                         mutatedNucleotid = "G"
 
                         # making sure the nucleotid is not the same as in the given sequence or can not be sequenced
-                        if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("g" != choosenReadSeq[insertPlace])):
+                        if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("g" != choosenReadSeq[insertPlace]):
 
                             # inserting the mutations into the copied sequence
                             mutableChoosenReadSeq = (choosenReadSeq).tomutable()
@@ -210,7 +210,7 @@ for bin in range(0, (len(bins)-1)):
                         mutatedNucleotid = "T"
 
                         # making sure the nucleotid is not the same as in the given sequence or can not be sequenced
-                        if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("t" != choosenReadSeq[insertPlace])):
+                        if (mutatedNucleotid != choosenReadSeq[insertPlace]) and ("t" != choosenReadSeq[insertPlace]):
 
                             # inserting the mutations into the copied sequence
                             mutableChoosenReadSeq = (choosenReadSeq).tomutable()
