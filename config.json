@@ -22,16 +22,16 @@
   },
 
   "simulateReads":{
-    "meanBinSize": 1000000,
-    "standartDeviationOfBinSize": 1500,
+    "meanBinSize": 97,
+    "standartDeviationOfBinSize": 1173,
     "seed": 7643,
-    "meanMDACoverage": 3,
-    "standartDeviationOfMDACoverage": 2,
-    "zeroInflatationProbability": 0.5,
+    "meanMDACoverage": 0.011904762,
+    "standartDeviationOfMDACoverage": 0.121405227,
+    "zeroInflatationProbability": 0,
     "readLength": 100,
     "meanFragmentSize": 250,
     "standartDeviationOfFragmentSize": 16,
-    "MDAamplificationErrorProbability": 0.0000001,
+    "MDAamplificationErrorProbability": 0.01,
     "ARTcoverage": 1,
     "ARTDropReadProbability": 0.05
   }
